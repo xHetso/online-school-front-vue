@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+defineProps(['to', 'name'])
+</script>
 
 <template>
-	<a href="#" class=".btn-nav btn-active">Dashboard</a>
+	<router-link :to="to" class="btn-nav" exact-active-class="btn-active">{{
+		name
+	}}</router-link>
 </template>
 
 <style scoped>
