@@ -1,24 +1,29 @@
 <script setup>
 import NavButtonComponent from './NavButton.vue'
+import NavProfileComponent from './NavProfile.vue'
 </script>
 
 <template>
-	<div class="navigation">
-		<div class="profile">
-			<img
-				class="w-36 h-36 rounded-full mb-5"
-				src="./../../assets/images/image.png"
-				alt="Rounded avatar"
-			/>
+	<div class="navigation flex flex-col items-center">
+		<nav-profile-component />
+		<div class="flex flex-col justify-center items-center">
+			<nav-button-component to="/" name="Dashboard" />
+			<nav-button-component to="/courses" name="Courses" />
+			<nav-button-component to="/routine" name="Routine" />
+			<nav-button-component to="/exam" name="Exam" />
+			<nav-button-component to="/results" name="Results" />
+			<nav-button-component to="/students" name="Students" />
+			<nav-button-component to="/message" name="Message" />
+			<nav-button-component to="/notice-board" name="Notice Board" />
+			<nav-button-component to="/live-class" name="Live Class" />
 		</div>
-		<nav-button-component />
 	</div>
 </template>
 
 <style scoped>
 .navigation {
 	color: white;
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 	position: fixed;
 	top: 0;
 	bottom: 0;
