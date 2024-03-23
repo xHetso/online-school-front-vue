@@ -24,7 +24,7 @@ defineProps(['to', 'name'])
 	margin-bottom: 20px;
 }
 .btn-nav:hover {
-	background-color: #060e34;
+	background-color: rgb(106, 0, 255);
 }
 
 .btn-active {
@@ -42,5 +42,9 @@ defineProps(['to', 'name'])
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	transition: transform 0.2s ease-in-out;
 	margin-bottom: 20px;
+}
+.btn-active:hover {
+  background: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);
+  filter: brightness(1.1);
 }
 </style>

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Auth from './screens/Auth.vue'
 import Courses from './screens/Courses.vue'
 import Dashboard from './screens/Dashboard.vue'
 import Exam from './screens/Exam.vue'
@@ -10,6 +11,11 @@ import Routine from './screens/Routine.vue'
 import Students from './screens/Students.vue'
 
 const routes = [
+	{
+		path: '/auth',
+		name: 'Auth',
+		component: Auth,
+	},
 	{
 		path: '/',
 		name: 'Dashboard',
