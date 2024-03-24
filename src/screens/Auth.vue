@@ -29,7 +29,7 @@ const handleLogin = async () => {
 			localStorage.setItem('accessToken', data.accessToken)
 			Cookies.set('refreshToken', data.refreshToken, {
 				secure: true,
-				httpOnly: true,
+				httpOnly: false,
 				sameSite: 'Strict',
 			})
 			localStorage.setItem('userData', JSON.stringify(data.user))
@@ -61,7 +61,7 @@ const handleRegister = async () => {
 			localStorage.setItem('accessToken', data.accessToken)
 			Cookies.set('refreshToken', data.refreshToken, {
 				secure: true,
-				httpOnly: true,
+				httpOnly: false,
 				sameSite: 'Strict',
 			})
 			localStorage.setItem('userData', JSON.stringify(data.user))

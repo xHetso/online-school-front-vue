@@ -66,7 +66,7 @@
 					<h1 class="text-2xl">Detailed Information:</h1>
 					<textarea
 						class="detailed-input mb-[20px]"
-						v-model="formData.detailedInfo"
+						v-model="formData.information"
 					></textarea>
 				</div>
 			</div>
@@ -118,7 +118,7 @@ const formData = reactive({
 	instagram: '',
 	telegram: '',
 	youtube: '',
-	detailedInfo: '',
+	information: '',
 })
 
 const fetchProfileData = async () => {

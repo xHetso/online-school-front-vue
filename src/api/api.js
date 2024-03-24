@@ -10,13 +10,23 @@ const api = axios.create({
 // Функция для попытки обновления accessToken
 async function refreshAccessToken() {
 	try {
-		const response = await api.post('/auth/refresh')
-		const { accessToken, refreshToken, user } = response.data
-		// Сохраняем accessToken и данные пользователя в localStorage
+		// Получаем refreshToken из кук
+		const refreshToken = Cookies.get('refreshToken')
+
+		// Проверяем наличие refreshToken
+		if (!refreshToken) {
+			throw new Error('No refresh token available')
+		}
+
+		// Отправляем запрос для получения нового accessToken
+		const response = await api.post('/auth/access-token', { refreshToken })
+		const { accessToken, user, newRefreshToken } = response.data
+
+		// Сохраняем новый accessToken и данные пользователя
 		localStorage.setItem('accessToken', accessToken)
 		localStorage.setItem('user', JSON.stringify(user))
-		// Обновляем refreshToken в куках
-		Cookies.set('refreshToken', refreshToken, { expires: 7 }) // устанавливаем срок жизни, например, 7 дней
+		Cookies.set('refreshToken', newRefreshToken)
+
 		return accessToken
 	} catch (error) {
 		console.error('Error refreshing access token:', error)
