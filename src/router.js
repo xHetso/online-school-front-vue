@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { roles } from './api/roles'
 import Layout from './components/Layout.vue'
+import Admin from './screens/Admin.vue'
 import Auth from './screens/Auth.vue'
+import ChangeProfile from './screens/ChangeProfile.vue'
 import Courses from './screens/Courses.vue'
 import Dashboard from './screens/Dashboard.vue'
 import Exam from './screens/Exam.vue'
@@ -17,6 +19,11 @@ const routes = [
 		path: '/auth',
 		name: 'Auth',
 		component: Auth,
+	},
+	{
+		path: '/admin',
+		name: 'Admin',
+		component: Admin,
 	},
 	{
 		path: '/',
@@ -76,7 +83,13 @@ const routes = [
 				path: '/live-class',
 				name: 'Live Class',
 				component: LiveClass,
-				meta: { role: roles.admin },
+				meta: { role: roles.user },
+			},
+			{
+				path: '/profile',
+				name: 'Change Profile',
+				component: ChangeProfile,
+				meta: { role: roles.user },
 			},
 		],
 	},

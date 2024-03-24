@@ -87,9 +87,7 @@ const handleRegister = async () => {
 				<h2 class="text-3xl font-bold mb-2 text-center">ONLINE SCHOOL</h2>
 				<div class="space-y-4">
 					<div>
-						<div
-							class="flex items-center mb-2 justify-center mb-[30px] mt-[30px]"
-						>
+						<div class="flex items-center justify-center mb-[30px] mt-[30px]">
 							<button
 								:class="[
 									'px-4 py-2 rounded focus:outline-none',

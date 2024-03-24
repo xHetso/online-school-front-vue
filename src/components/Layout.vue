@@ -9,7 +9,7 @@ const route = useRoute()
 	<div class="main-layout">
 		<navigation-component />
 		<div class="layout-content">
-			<h1 class="text-3xl flex flex-col justify-center items-center">
+			<h1 class="text-3xl flex flex-col justify-center items-center mb-10">
 				{{ route.name }}
 			</h1>
 			<router-view />

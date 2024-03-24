@@ -9,10 +9,10 @@
 			alt="Rounded avatar"
 		/>
 		<h1 class="text-2xl font-bold text-white mb-5">Hetso Absolute</h1>
-		<a class="edit-button" href="#">Change Profile</a>
+		<router-link to="/profile" class="edit-button">Change Profile</router-link>
 	</div>
 </template>
-<style>
+<style scoped>
 .edit-button {
 	color: white;
 	padding: 10px 20px;
