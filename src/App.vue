@@ -1,9 +1,7 @@
-<script setup>
-import LayoutComponent from './components/Layout.vue'
-</script>
+<script setup></script>
 
 <template>
-	<layout-component />
+	<router-view />
 </template>
 
 <style scoped></style>

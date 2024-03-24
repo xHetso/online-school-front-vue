@@ -1,26 +1,42 @@
 <script setup>
+import Cookies from 'js-cookie'
 import { ref } from 'vue'
 
 const isRegistering = ref(false)
 const name = ref('')
-const login = ref('')
+const email = ref('')
 const surname = ref('')
 const password = ref('')
 
 const handleLogin = async () => {
 	try {
+		console.log('Sending login data:', {
+			email: email.value,
+			password: password.value,
+		})
 		const response = await fetch('http://localhost:4200/api/auth/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				login: login.value,
+				email: email.value,
 				password: password.value,
 			}),
 		})
 		const data = await response.json()
-		console.log('Success', data)
+		if (response.ok && data.accessToken) {
+			localStorage.setItem('accessToken', data.accessToken)
+			Cookies.set('refreshToken', data.refreshToken, {
+				secure: true,
+				httpOnly: true,
+				sameSite: 'Strict',
+			})
+			localStorage.setItem('userData', JSON.stringify(data.user))
+			console.log('Success', data)
+		} else {
+			console.log('Authentication failed:', data.message)
+		}
 	} catch (error) {
 		console.log('Error', error)
 	}
@@ -36,12 +52,23 @@ const handleRegister = async () => {
 			body: JSON.stringify({
 				name: name.value,
 				surname: surname.value,
-				login: login.value,
+				email: email.value,
 				password: password.value,
 			}),
 		})
 		const data = await response.json()
-		console.log('Success', data)
+		if (response.ok && data.accessToken) {
+			localStorage.setItem('accessToken', data.accessToken)
+			Cookies.set('refreshToken', data.refreshToken, {
+				secure: true,
+				httpOnly: true,
+				sameSite: 'Strict',
+			})
+			localStorage.setItem('userData', JSON.stringify(data.user))
+			console.log('Success', data)
+		} else {
+			console.log('Registration failed:', data.message)
+		}
 	} catch (error) {
 		console.log('Error', error)
 	}
@@ -93,8 +120,8 @@ const handleRegister = async () => {
 							<div class="mb-4">
 								<input
 									type="text"
-									v-model="login"
-									placeholder="Login"
+									v-model="email"
+									placeholder="Email"
 									class="w-full p-2 rounded bg-gray-800 text-white focus:outline-none border-b-2 border-purple-600"
 								/>
 							</div>
@@ -134,8 +161,8 @@ const handleRegister = async () => {
 							<div class="mb-4">
 								<input
 									type="text"
-									v-model="login"
-									placeholder="Login"
+									v-model="email"
+									placeholder="Email"
 									class="w-full p-2 rounded bg-gray-800 text-white focus:outline-none border-b-2 border-purple-600"
 								/>
 							</div>
@@ -167,7 +194,7 @@ button.btn-active {
 	background: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);
 }
 button.btn-active:hover {
-  background: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);
-  filter: brightness(1.1);
+	background: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);
+	filter: brightness(1.1);
 }
 </style>

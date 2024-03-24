@@ -7,7 +7,6 @@ import NavProfileComponent from './NavProfile.vue'
 	<div class="navigation flex flex-col items-center">
 		<nav-profile-component />
 		<div class="flex flex-col justify-center items-center">
-			<nav-button-component to="/auth" name="Auth" />
 			<nav-button-component to="/" name="Dashboard" />
 			<nav-button-component to="/courses" name="Courses" />
 			<nav-button-component to="/routine" name="Routine" />
