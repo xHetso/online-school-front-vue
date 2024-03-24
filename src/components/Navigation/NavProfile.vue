@@ -17,7 +17,7 @@
 	color: white;
 	padding: 10px 20px;
 	width: 200px;
-	border: 2px solid rgb(85, 16, 170);
+	border: 3px solid rgb(85, 16, 170);
 	border-radius: 25px;
 	cursor: pointer;
 	text-align: center;
@@ -27,6 +27,9 @@
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	transition: transform 0.2s ease-in-out;
 	margin-bottom: 20px;
+}
+.edit-button:hover {
+	background-color: rgb(106, 0, 255);
 }
 .profile {
 	width: 275px;
