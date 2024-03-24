@@ -19,7 +19,9 @@ async function refreshAccessToken() {
 		}
 
 		// Отправляем запрос для получения нового accessToken
-		const response = await api.post('/auth/access-token', { refreshToken })
+		const response = await api.post('/auth/login/access-token', {
+			refreshToken,
+		})
 		const { accessToken, user, newRefreshToken } = response.data
 
 		// Сохраняем новый accessToken и данные пользователя
