@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 
 const formData = reactive({
 	name: '',
@@ -121,9 +121,53 @@ const formData = reactive({
 	detailedInfo: '',
 })
 
-const handleSubmit = () => {
-	// Здесь обработайте отправку формы
-	console.log(formData)
+const fetchProfileData = async () => {
+	try {
+		// Получение токена из localStorage
+		const token = localStorage.getItem('accessToken')
+		const response = await fetch('http://localhost:4200/api/users/profile', {
+			headers: {
+				'Content-Type': 'application/json',
+				// Добавляем токен в заголовок Authorization
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		if (!response.ok) {
+			throw new Error('Network response was not ok')
+		}
+		const data = await response.json()
+		Object.assign(formData, data)
+	} catch (error) {
+		console.error('There was a problem with the fetch operation:', error)
+	}
+}
+
+onMounted(() => {
+	fetchProfileData()
+})
+
+const handleSubmit = async () => {
+	try {
+		const token = localStorage.getItem('accessToken')
+		const response = await fetch('http://localhost:4200/api/users/profile', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(formData),
+		})
+
+		if (!response.ok) {
+			throw new Error('Failed to update profile')
+		}
+
+		// Handle the successful response, e.g., show a notification
+		console.log('Profile updated successfully')
+	} catch (error) {
+		// Handle errors, e.g., show error notification
+		console.error('Error updating profile:', error)
+	}
 }
 </script>
 
