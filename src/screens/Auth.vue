@@ -34,6 +34,7 @@ const handleLogin = async () => {
 			})
 			localStorage.setItem('userData', JSON.stringify(data.user))
 			console.log('Success', data)
+			window.location.href = 'http://localhost:5173/'; // Добавлено перенаправление
 		} else {
 			console.log('Authentication failed:', data.message)
 		}
@@ -66,6 +67,7 @@ const handleRegister = async () => {
 			})
 			localStorage.setItem('userData', JSON.stringify(data.user))
 			console.log('Success', data)
+			window.location.href = 'http://localhost:5173/'; // Добавлено перенаправление
 		} else {
 			console.log('Registration failed:', data.message)
 		}

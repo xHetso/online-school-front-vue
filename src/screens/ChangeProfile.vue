@@ -37,7 +37,6 @@
 						<h1 class="text-2xl mb-[20px]">Email:</h1>
 						<h1 class="text-2xl mb-[20px]">Country:</h1>
 						<h1 class="text-2xl mb-[20px]">City:</h1>
-						<h1 class="text-2xl mb-[20px]">Password:</h1>
 					</div>
 					<div class="flex flex-col">
 						<input
@@ -54,11 +53,6 @@
 							class="text-input mb-[20px]"
 							type="text"
 							v-model="formData.city"
-						/>
-						<input
-							class="text-input mb-[20px]"
-							type="password"
-							v-model="formData.password"
 						/>
 					</div>
 				</div>
@@ -115,7 +109,6 @@ const formData = reactive({
 	email: '',
 	country: '',
 	city: '',
-	password: '',
 	instagram: '',
 	telegram: '',
 	youtube: '',
