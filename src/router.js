@@ -96,7 +96,7 @@ const routes = [
 ]
 
 const getUserRole = () => {
-	const userData = JSON.parse(localStorage.getItem('userData'))
+	const userData = JSON.parse(localStorage.getItem('user'))
 	return userData && userData.isAdmin ? roles.admin : roles.user
 }
 

@@ -4,7 +4,7 @@
 			<div class="col">
 				<img
 					class="w-36 h-36 rounded-full mb-5"
-					src="/src/assets/images/image.png"
+					src="/src/assets/images/anonym.webp"
 				/>
 			</div>
 			<div>
@@ -113,6 +113,7 @@ const formData = reactive({
 	telegram: '',
 	youtube: '',
 	information: '',
+	avatar: ''
 })
 
 const fetchProfileData = async () => {

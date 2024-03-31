@@ -32,7 +32,7 @@ const handleLogin = async () => {
 				httpOnly: false,
 				sameSite: 'Strict',
 			})
-			localStorage.setItem('userData', JSON.stringify(data.user))
+			localStorage.setItem('user', JSON.stringify(data.user))
 			console.log('Success', data)
 			window.location.href = 'http://localhost:5173/'; // Добавлено перенаправление
 		} else {
@@ -65,7 +65,7 @@ const handleRegister = async () => {
 				httpOnly: false,
 				sameSite: 'Strict',
 			})
-			localStorage.setItem('userData', JSON.stringify(data.user))
+			localStorage.setItem('user', JSON.stringify(data.user))
 			console.log('Success', data)
 			window.location.href = 'http://localhost:5173/'; // Добавлено перенаправление
 		} else {
