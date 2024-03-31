@@ -13,6 +13,7 @@ import NoticeBoard from './screens/NoticeBoard.vue'
 import Results from './screens/Results.vue'
 import Routine from './screens/Routine.vue'
 import Students from './screens/Students.vue'
+import Lessons from './screens/Lessons.vue'
 
 const routes = [
 	{
@@ -41,6 +42,12 @@ const routes = [
 				path: '/courses',
 				name: 'Courses',
 				component: Courses,
+				meta: { role: roles.user },
+			},
+			{
+				path: '/courses/:id',
+				name: 'Lessons',
+				component: Lessons,
 				meta: { role: roles.user },
 			},
 			{
