@@ -11,7 +11,7 @@ import LiveClass from './screens/LiveClass.vue'
 import Message from './screens/Message.vue'
 import NoticeBoard from './screens/NoticeBoard.vue'
 import Results from './screens/Results.vue'
-import Routine from './screens/Routine.vue'
+import Documentation from './screens/Documentation.vue'
 import Students from './screens/Students.vue'
 import Lessons from './screens/Lessons.vue'
 
@@ -51,9 +51,9 @@ const routes = [
 				meta: { role: roles.user },
 			},
 			{
-				path: '/routine',
-				name: 'Routine',
-				component: Routine,
+				path: '/documentation',
+				name: 'Documentation',
+				component: Documentation,
 				meta: { role: roles.user },
 			},
 			{

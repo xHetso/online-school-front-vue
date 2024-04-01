@@ -9,7 +9,7 @@ import NavProfileComponent from './NavProfile.vue'
 		<div class="flex flex-col justify-center items-center">
 			<nav-button-component to="/" name="Dashboard" />
 			<nav-button-component to="/courses" name="Courses" />
-			<nav-button-component to="/routine" name="Routine" />
+			<nav-button-component to="/documentation" name="Documentation" />
 			<nav-button-component to="/exam" name="Exam" />
 			<nav-button-component to="/results" name="Results" />
 			<nav-button-component to="/students" name="Students" />
