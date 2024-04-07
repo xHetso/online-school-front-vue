@@ -3,9 +3,9 @@
 		<div class="main-profile flex gap-10 justify-center items-center">
 			<div class="col">
 				<img
-					class="w-36 h-36 rounded-full mb-5"
-					src="/src/assets/images/anonym.webp"
-				/>
+        class="w-36 h-36 rounded-full mb-5"
+        :src="`http://localhost:4200` + formData.avatar || '/src/assets/images/anonym.webp'"
+      />
 			</div>
 			<div>
 				<h1 class="text-2xl mb-[20px]">Name:</h1>
