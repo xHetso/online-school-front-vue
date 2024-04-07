@@ -26,8 +26,8 @@
 		</div>
 
 		<div class="flex justify-center items-center mb-10">
-			<button class="edit-button">Change photo</button>
-		</div>
+      <button class="edit-button" @click="changePhoto">Change photo</button>
+    </div>
 
 		<div class="center-settings flex gap-10 justify-center items-center">
 			<div>
@@ -100,43 +100,93 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import api from '../api/api'
 
 const formData = reactive({
-	name: '',
-	surname: '',
-	email: '',
-	country: '',
-	city: '',
-	instagram: '',
-	telegram: '',
-	youtube: '',
-	information: '',
-	avatar: ''
+  name: '',
+  surname: '',
+  email: '',
+  country: '',
+  city: '',
+  instagram: '',
+  telegram: '',
+  youtube: '',
+  information: '',
+  avatar: ''
 })
 
 const fetchProfileData = async () => {
-	try {
-		const response = await api.get('/users/profile')
-		Object.assign(formData, response.data)
-	} catch (error) {
-		console.error('There was a problem with the fetch operation:', error)
-	}
+  try {
+    const response = await api.get('/users/profile')
+    Object.assign(formData, response.data)
+  } catch (error) {
+    console.error('Произошла ошибка при выполнении запроса:', error)
+  }
 }
 
 onMounted(() => {
-	fetchProfileData()
+  fetchProfileData()
 })
 
 const handleSubmit = async () => {
-	try {
-		await api.put('/users/profile', formData)
-		console.log('Profile updated successfully')
-	} catch (error) {
-		console.error('Error updating profile:', error)
-	}
+	console.log(formData)
+  try {
+    await api.put('/users/profile', formData)
+    console.log('Профиль успешно обновлен')
+  } catch (error) {
+    console.error('Ошибка при обновлении профиля:', error)
+  }
 }
+
+const imageFile = ref(null);
+
+const changePhoto = () => {
+  const userData = JSON.parse(localStorage.getItem('user'));
+  const userId = userData?._id;
+
+  if (!userId) {
+    console.error('Идентификатор пользователя не найден в локальном хранилище');
+    return;
+  }
+
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.onchange = async (e) => {
+    const file = e.target.files[0];
+    imageFile.value = file;
+    await uploadImage(userId, file);
+  };
+  fileInput.click();
+}
+
+const uploadImage = async (userId, file) => {
+  const uploadFormData = new FormData(); // Изменил имя переменной здесь
+  uploadFormData.append('file', file);
+
+  try {
+    const response = await fetch(`http://localhost:4200/api/files?folder=users/${userId}`, {
+      method: 'POST',
+      body: uploadFormData, // И использовал новое имя переменной
+    });
+
+    if (!response.ok) {
+      throw new Error('Сервер вернул ошибку');
+    }
+
+    const result = await response.json();
+    if (result && result[0] && result[0].url) {
+      formData.avatar = result[0].url; // Теперь это обновляет реактивное состояние
+      console.log('Обновлённый URL изображения:', formData.avatar);
+    } else {
+      console.error('URL изображения не найден в ответе сервера:', result);
+    }
+  } catch (error) {
+    console.error('Ошибка при загрузке изображения:', error);
+  }
+}
+
+
 </script>
 
 <style scoped>
