@@ -1,37 +1,29 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
 
-
 const userName = ref('Loading...');
-const userAvatar = ref('/src/assets/images/anonym.webp'); // Значение по умолчанию
+const userAvatar = ref('');
 
-onMounted(() => {
+function updateProfileData() {
   const userStr = localStorage.getItem('user');
   if (userStr) {
     const user = JSON.parse(userStr);
     userName.value = `${user.name} ${user.surname}`;
-    updateUserAvatar();
-  }
-
-  // Прослушиваем глобальное событие обновления аватара
-  window.addEventListener('avatar-updated', updateUserAvatar);
-});
-
-onUnmounted(() => {
-  // Не забывайте удалять слушатели событий, чтобы избежать утечек памяти
-  window.removeEventListener('avatar-updated', updateUserAvatar);
-});
-
-function updateUserAvatar() {
-  const userStr = localStorage.getItem('user');
-  if (userStr) {
-    const user = JSON.parse(userStr);
     userAvatar.value = user.avatar
       ? `http://localhost:4200${user.avatar}?${new Date().getTime()}`
       : '/src/assets/images/anonym.webp';
   }
 }
 
+onMounted(updateProfileData);
+
+// Прослушиваем глобальное событие обновления профиля
+window.addEventListener('profile-updated', updateProfileData);
+
+onUnmounted(() => {
+  // Не забывайте удалять слушатели событий
+  window.removeEventListener('profile-updated', updateProfileData);
+});
 
 </script>
 
@@ -40,7 +32,7 @@ function updateUserAvatar() {
     class="profile flex flex-col justify-center items-center mt-[50px] mb-[20px]"
   >
     <img
-      class="w-36 h-36 rounded-full mb-5"
+      class="w-36 h-36 rounded-full mb-5 object-cover"
       :src="userAvatar"
       alt="Rounded avatar"
     />

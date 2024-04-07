@@ -3,7 +3,7 @@
 		<div class="main-profile flex gap-10 justify-center items-center">
 			<div class="col">
 				<img
-        class="w-36 h-36 rounded-full mb-5"
+        class="w-36 h-36 rounded-full mb-5 object-cover"
         :src="`http://localhost:4200` + formData.avatar || '/src/assets/images/anonym.webp'"
       />
 			</div>
@@ -130,10 +130,17 @@ onMounted(() => {
 })
 
 const handleSubmit = async () => {
-	console.log(formData)
   try {
     await api.put('/users/profile', formData)
     console.log('Профиль успешно обновлен')
+
+    // Обновляем данные в localStorage
+    const userData = JSON.parse(localStorage.getItem('user')) || {};
+    Object.assign(userData, formData);
+    localStorage.setItem('user', JSON.stringify(userData));
+
+    // Опционально: излучаем событие, если другие компоненты должны отреагировать на изменения
+    window.dispatchEvent(new CustomEvent('profile-updated'));
   } catch (error) {
     console.error('Ошибка при обновлении профиля:', error)
   }
