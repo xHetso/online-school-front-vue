@@ -176,9 +176,16 @@ const uploadImage = async (userId, file) => {
 
     const result = await response.json();
     if (result && result[0] && result[0].url) {
-      formData.avatar = result[0].url; // Теперь это обновляет реактивное состояние
-      console.log('Обновлённый URL изображения:', formData.avatar);
-    } else {
+			formData.avatar = result[0].url;
+			console.log('Обновлённый URL изображения:', formData.avatar);
+
+			// Также обновляем информацию об аватаре в localStorage
+			const userData = JSON.parse(localStorage.getItem('user'));
+			userData.avatar = formData.avatar; // Обновляем поле avatar
+			localStorage.setItem('user', JSON.stringify(userData)); // Сохраняем обратно в localStorage
+
+			window.dispatchEvent(new CustomEvent('avatar-updated'));
+		} else {
       console.error('URL изображения не найден в ответе сервера:', result);
     }
   } catch (error) {

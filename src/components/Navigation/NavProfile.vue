@@ -1,17 +1,38 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue'
+
 
 const userName = ref('Loading...');
+const userAvatar = ref('/src/assets/images/anonym.webp'); // Значение по умолчанию
 
 onMounted(() => {
   const userStr = localStorage.getItem('user');
   if (userStr) {
     const user = JSON.parse(userStr);
     userName.value = `${user.name} ${user.surname}`;
-  } else {
-    userName.value = "User Not Found";
+    updateUserAvatar();
   }
+
+  // Прослушиваем глобальное событие обновления аватара
+  window.addEventListener('avatar-updated', updateUserAvatar);
 });
+
+onUnmounted(() => {
+  // Не забывайте удалять слушатели событий, чтобы избежать утечек памяти
+  window.removeEventListener('avatar-updated', updateUserAvatar);
+});
+
+function updateUserAvatar() {
+  const userStr = localStorage.getItem('user');
+  if (userStr) {
+    const user = JSON.parse(userStr);
+    userAvatar.value = user.avatar
+      ? `http://localhost:4200${user.avatar}?${new Date().getTime()}`
+      : '/src/assets/images/anonym.webp';
+  }
+}
+
+
 </script>
 
 <template>
@@ -20,7 +41,7 @@ onMounted(() => {
   >
     <img
       class="w-36 h-36 rounded-full mb-5"
-      src="./../../assets/images/anonym.webp"
+      :src="userAvatar"
       alt="Rounded avatar"
     />
     <h1 class="text-2xl font-bold text-white mb-5">{{ userName }}</h1>
