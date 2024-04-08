@@ -14,6 +14,9 @@ import Results from './screens/Results.vue'
 import Documentation from './screens/Documentation.vue'
 import Students from './screens/Students.vue'
 import Lessons from './screens/Lessons.vue'
+import JavaScriptTest from './screens/JavaScriptTest.vue'
+import NestTest from './screens/NestTest.vue'
+import ReactTest from './screens/ReactTest.vue'
 
 const routes = [
 	{
@@ -60,6 +63,24 @@ const routes = [
 				path: '/exam',
 				name: 'Exam',
 				component: Exam,
+				meta: { role: roles.user },
+			},
+			{
+				path: '/javascript-test',
+				name: 'JavaScriptTest',
+				component: JavaScriptTest,
+				meta: { role: roles.user },
+			},
+			{
+				path: '/nest-js',
+				name: 'NestTest',
+				component: NestTest,
+				meta: { role: roles.user },
+			},
+			{
+				path: '/react-js',
+				name: 'ReactTest',
+				component: ReactTest,
 				meta: { role: roles.user },
 			},
 			{
