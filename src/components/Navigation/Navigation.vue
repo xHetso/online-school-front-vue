@@ -11,10 +11,7 @@ import NavProfileComponent from './NavProfile.vue'
 			<nav-button-component to="/courses" name="Courses" />
 			<nav-button-component to="/documentation" name="Documentation" />
 			<nav-button-component to="/exam" name="Exam" />
-			<nav-button-component to="/results" name="Results" />
-			<nav-button-component to="/students" name="Students" />
-			<nav-button-component to="/message" name="Message" />
-			<nav-button-component to="/notice-board" name="Notice Board" />
+			<nav-button-component to="/chat" name="Chat" />
 			<nav-button-component to="/live-class" name="Live Class" />
 		</div>
 	</div>

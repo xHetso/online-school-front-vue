@@ -29,15 +29,14 @@
             <h3 class="text-xl font-bold mt-6">ES6 Код Үлгілері</h3>
             <p class="mt-4">Мысалы, ES6 стрелка функцияларының қолданылуы:</p>
             <pre class="bg-gray-700 text-white p-2 rounded-lg">
-            <code>// Ескі синтаксис
-            function sum(a, b) {
-                return a + b;
-            }
+    <code>// Ескі синтаксис
+    function sum(a, b) {
+        return a + b;
+    }
 
-            // ES6 стрелка функциясы
-            const sum = (a, b) => a + b;
-            </code>
-            </pre>
+    // ES6 стрелка функциясы
+    const sum = (a, b) => a + b;
+    </code></pre>
             <p class="mt-4">Бұл тек бірнеше ES6 жаңалықтары. ECMAScript әр жыл сайын жаңартылады, осыған байланысты жаңа мүмкіндіктер мен жаңалықтар пайда болады.</p>
         </div>
         </div>
@@ -69,35 +68,31 @@
             <h1 class="text-3xl font-bold" id="javascript-function">JavaScript функциялары жөнінде құжаттама</h1>
             <h2 class="text-2xl font-bold mt-6">1. Функцияларды жариялау</h2>
             <pre class="bg-gray-700 text-white p-2 rounded-lg">
-                <code>function функцияАты(параметрлер) {
+    <code>function функцияАты(параметрлер) {
         // функция денесі
-    }</code>
-            </pre>
+    }</code></pre>
 
             <h2 class="text-2xl font-bold mt-6">2. Анонимді функциялар</h2>
             <pre class="bg-gray-700 text-white p-2 rounded-lg">
-                <code>function(параметрлер) {
+    <code>function(параметрлер) {
         // функция денесі
-    }</code>
-            </pre>
+    }</code></pre>
 
             <h2 class="text-2xl font-bold mt-6">3. Стрелкалық функциялар</h2>
             <pre class="bg-gray-700 text-white p-2 rounded-lg">
-                <code>(параметрлер) => {
+    <code>(параметрлер) => {
         // функция денесі
-    }</code>
-            </pre>
+    }</code></pre>
 
             <h2 class="text-2xl font-bold mt-6">4. Функция параметрлері</h2>
-            <pre class="bg-gray-700 text-white p-2 rounded-lg">
-                <code>function sum(a, b) {
+    <pre class="bg-gray-700 text-white p-2 rounded-lg">
+    <code>function sum(a, b) {
         return a + b;
-    }</code>
-            </pre>
+    }</code></pre>
 
             <h2 class="text-2xl font-bold mt-6">5. Мәндерді қайтару</h2>
             <pre class="bg-gray-700 text-white p-2 rounded-lg">
-                <code>function getDouble(number) {
+    <code>function getDouble(number) {
         return number * 2;
     }</code>
             </pre>

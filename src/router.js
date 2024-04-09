@@ -8,11 +8,8 @@ import Courses from './screens/Courses.vue'
 import Dashboard from './screens/Dashboard.vue'
 import Exam from './screens/Exam.vue'
 import LiveClass from './screens/LiveClass.vue'
-import Message from './screens/Message.vue'
-import NoticeBoard from './screens/NoticeBoard.vue'
-import Results from './screens/Results.vue'
+import Chat from './screens/Chat.vue'
 import Documentation from './screens/Documentation.vue'
-import Students from './screens/Students.vue'
 import Lessons from './screens/Lessons.vue'
 import JavaScriptTest from './screens/JavaScriptTest.vue'
 import NestTest from './screens/NestTest.vue'
@@ -84,27 +81,9 @@ const routes = [
 				meta: { role: roles.user },
 			},
 			{
-				path: '/results',
-				name: 'Results',
-				component: Results,
-				meta: { role: roles.user },
-			},
-			{
-				path: '/students',
-				name: 'Students',
-				component: Students,
-				meta: { role: roles.user },
-			},
-			{
-				path: '/message',
-				name: 'Message',
-				component: Message,
-				meta: { role: roles.user },
-			},
-			{
-				path: '/notice-board',
-				name: 'Notice Board',
-				component: NoticeBoard,
+				path: '/chat',
+				name: 'Chat',
+				component: Chat,
 				meta: { role: roles.user },
 			},
 			{
