@@ -21,10 +21,13 @@
       <div class="p-4 text-white text-xl border-b border-gray-700">Чат</div>
       <div class="flex-grow overflow-y-auto p-4 space-y-4">
         <!-- Сообщения -->
-        <div v-for="message in messages" :key="message.id" class="chat-message">
-          <strong>{{ `${message.user.name} ` || 'Unknown' }}</strong> 
-          <strong>{{ message.user.surname || '' }}</strong>: {{ message.content }}
-        </div>
+<!-- Сообщения -->
+<div v-for="message in messages" :key="message.id"
+     :class="{'my-message': message.user.userId === getUserDataFromLocalStorage().userId, 'other-message': message.user.userId !== getUserDataFromLocalStorage().userId}">
+  <strong>{{ `${message.user.name} ` || 'Unknown' }}</strong>
+  <strong>{{ message.user.surname || '' }}</strong>: {{ message.content }}
+</div>
+
 
       </div>
       <div class="p-4 flex">
@@ -139,7 +142,26 @@ const setActiveUser = (user) => {
 </script>
 
 <style scoped>
-/* ...стили... */
+.my-message {
+  margin-left: auto;
+  background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654); /* Темно-серый цвет для сообщений текущего пользователя */
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  max-width: 55%;
+}
+
+.other-message {
+  margin-right: auto;
+  background-color: #2d3748; /* Светло-серый цвет для сообщений других пользователей */
+  color: white;
+  padding: 8px;
+  border-radius: 12px;
+  max-width: 55%;
+}
+
+
+/* ...стили скролла... */
 ::-webkit-scrollbar {
   width: 10px;
 }
