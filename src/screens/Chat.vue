@@ -10,7 +10,7 @@
             @click="setActiveUser(user)">
           <img class="h-10 w-10 rounded-full mr-3" :src="user.avatar" alt="User avatar">
           <div class="text-white">
-            <div class="font-semibold">{{ user.name }}, {{ user.surname }}</div>
+            <div class="font-semibold">{{ user.name }} {{ user.surname }}</div>
           </div>
         </li>
       </ul>
@@ -22,8 +22,10 @@
       <div class="flex-grow overflow-y-auto p-4 space-y-4">
         <!-- Сообщения -->
         <div v-for="message in messages" :key="message.id" class="chat-message">
-  <strong>{{ message.sender?.name || 'Unknown' }}</strong>: {{ message.content }}
-</div>
+          <strong>{{ `${message.user.name} ` || 'Unknown' }}</strong> 
+          <strong>{{ message.user.surname || '' }}</strong>: {{ message.content }}
+        </div>
+
       </div>
       <div class="p-4 flex">
         <input v-model="newMessage" type="text"
@@ -104,23 +106,27 @@ onUnmounted(() => {
 
 const sendMessage = () => {
   if (newMessage.value.trim()) {
-    const userObj = getUserDataFromLocalStorage(); // Получаем userId из localStorage
-    const messageContent = {
-      userObj,  // Используем userId для бэкенда
-      senderId: activeUser.value?.id, // Убедитесь, что activeUser был выбран
-      senderName: activeUser.value.name,
-      senderSurname: activeUser.value.surname,
-      content: newMessage.value,
-    };
-    console.log(messageContent)
-    if (userObj) {
+    // Получаем данные текущего пользователя из localStorage
+    const userObj = getUserDataFromLocalStorage();
+    if (userObj && activeUser.value) {
+      const messageContent = {
+        userId: userObj.userId, // ID текущего пользователя
+        userName: userObj.name,
+        userSurname: userObj.surname,
+        content: newMessage.value, // Содержимое сообщения
+        // Добавляем данные выбранного пользователя, которому отправляем сообщение
+        senderId: activeUser.value.id, 
+        senderName: activeUser.value.name,
+        senderSurname: activeUser.value.surname,
+      };
       socket.emit('chatToServer', messageContent);
+      newMessage.value = '';
     } else {
-      console.error('User Obj is not available in localStorage');
+      console.error('User details are not available');
     }
-    newMessage.value = ''; // Очищаем поле ввода после отправки
   }
 };
+
 
 
 const setActiveUser = (user) => {
