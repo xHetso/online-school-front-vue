@@ -103,10 +103,20 @@ const socket = io('http://localhost:4200/api/chat'); // Замените на UR
 const activeUser = ref(null);
 
 onMounted(() => {
+  socket.on('chatHistory', (history) => {
+    try {
+      const parsedHistory = JSON.parse(history);
+      messages.value = parsedHistory;
+    } catch (error) {
+      console.error('Ошибка при парсинге истории чата:', error);
+    }
+  });
+
   socket.on('chatToClient', (message) => {
     messages.value.push(message);
   });
 });
+
 
 onUnmounted(() => {
   socket.disconnect();
