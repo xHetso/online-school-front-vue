@@ -116,17 +116,17 @@ onUnmounted(() => {
 const sendMessage = () => {
   if (newMessage.value.trim()) {
     // Получаем данные текущего пользователя из localStorage
-    const userObj = getUserDataFromLocalStorage();
-    if (userObj && activeUser.value) {
+    const senderObj = getUserDataFromLocalStorage();
+    if (senderObj && activeUser.value) {
       const messageContent = {
-        userId: userObj.userId, // ID текущего пользователя
-        userName: userObj.name,
-        userSurname: userObj.surname,
+        senderId: senderObj.userId, // ID текущего пользователя
+        senderName: senderObj.name,
+        senderSurname: senderObj.surname,
         content: newMessage.value, // Содержимое сообщения
         // Добавляем данные выбранного пользователя, которому отправляем сообщение
-        senderId: activeUser.value.id, 
-        senderName: activeUser.value.name,
-        senderSurname: activeUser.value.surname,
+        recipientId: activeUser.value.id, 
+        recipientName: activeUser.value.name,
+        recipientSurname: activeUser.value.surname,
       };
       socket.emit('chatToServer', messageContent);
       newMessage.value = '';
