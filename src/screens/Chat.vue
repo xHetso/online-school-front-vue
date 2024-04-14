@@ -23,17 +23,17 @@
       </div>
       <div class="flex-grow overflow-y-auto p-4 space-y-4">
         <!-- Сообщения -->
-        <div v-for="message in messages" :key="message.id"
-            :class="{'my-message': message.user.userId === getUserDataFromLocalStorage().userId, 'other-message': message.user.userId !== getUserDataFromLocalStorage().userId}">
+        <div v-for="message in filteredMessages" :key="message.id"
+            :class="{'my-message': message.sender.userId === getUserDataFromLocalStorage().userId, 'other-message': message.sender.userId !== getUserDataFromLocalStorage().userId}">
           <div>
-            <strong>{{ `${message.user.name} ` || 'Unknown' }}</strong>
-            <strong>{{ message.user.surname || '' }}</strong>
+            <strong>{{ message.sender.name }} {{ message.sender.surname || '' }}</strong>
             <!-- Добавлено отображение времени сообщения -->
             <span class="text-sm text-gray-400">{{ message.time }}</span>
             <div class="mb-[10px]"></div> 
           </div>
           {{ message.content }}
         </div>
+        <div v-if="!filteredMessages.length" class="text-gray-400 text-center">Нет сообщений</div>
       </div>
 
       <div class="p-4 flex">
@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { io } from 'socket.io-client';
 
 const users = ref([]);
@@ -95,7 +95,6 @@ const getUserDataFromLocalStorage = () => {
   }
   return null;
 };
-
 
 const messages = ref([]);
 const newMessage = ref('');
@@ -143,7 +142,18 @@ const setActiveUser = (user) => {
   });
 };
 
+const filteredMessages = computed(() => {
+  if (activeUser.value) {
+    return messages.value.filter(message => 
+      (message.sender.userId === getUserDataFromLocalStorage().userId && message.recipient.id === activeUser.value.id) ||
+      (message.sender.userId === activeUser.value.id && message.recipient.id === getUserDataFromLocalStorage().userId)
+    );
+  } else {
+    return [];
+  }
+});
 </script>
+
 
 <style scoped>
 .my-message {
