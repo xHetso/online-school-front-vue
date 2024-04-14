@@ -18,18 +18,24 @@
     
     <!-- Область чата -->
     <div class="flex flex-col w-3/4 h-full bg-gray-800 rounded-lg">
-      <div class="p-4 text-white text-xl border-b border-gray-700">Чат</div>
+      <div class="p-4 text-white text-xl border-b border-gray-700">
+        Чат
+      </div>
       <div class="flex-grow overflow-y-auto p-4 space-y-4">
         <!-- Сообщения -->
-<!-- Сообщения -->
-<div v-for="message in messages" :key="message.id"
-     :class="{'my-message': message.user.userId === getUserDataFromLocalStorage().userId, 'other-message': message.user.userId !== getUserDataFromLocalStorage().userId}">
-  <strong>{{ `${message.user.name} ` || 'Unknown' }}</strong>
-  <strong>{{ message.user.surname || '' }}</strong>: {{ message.content }}
-</div>
-
-
+        <div v-for="message in messages" :key="message.id"
+            :class="{'my-message': message.user.userId === getUserDataFromLocalStorage().userId, 'other-message': message.user.userId !== getUserDataFromLocalStorage().userId}">
+          <div>
+            <strong>{{ `${message.user.name} ` || 'Unknown' }}</strong>
+            <strong>{{ message.user.surname || '' }}</strong>
+            <!-- Добавлено отображение времени сообщения -->
+            <span class="text-sm text-gray-400">{{ message.time }}</span>
+            <div class="mb-[10px]"></div> 
+          </div>
+          {{ message.content }}
+        </div>
       </div>
+
       <div class="p-4 flex">
         <input v-model="newMessage" type="text"
                class="flex-grow p-2 bg-gray-700 text-white rounded-lg mr-4 focus:outline-none focus:ring focus:ring-purple-500"
@@ -130,8 +136,6 @@ const sendMessage = () => {
   }
 };
 
-
-
 const setActiveUser = (user) => {
   activeUser.value = user;
   users.value.forEach(u => {
@@ -155,7 +159,7 @@ const setActiveUser = (user) => {
   margin-right: auto;
   background-color: #2d3748; /* Светло-серый цвет для сообщений других пользователей */
   color: white;
-  padding: 8px;
+  padding: 15px;
   border-radius: 12px;
   max-width: 55%;
 }
