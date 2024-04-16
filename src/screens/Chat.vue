@@ -1,14 +1,13 @@
 <template>
-  <!--h-screen-->
   <div class="flex h-[800px] p-4 bg-gray-900">
-    <!-- Список пользователей -->
+    <!-- User List -->
     <div class="flex flex-col w-1/4 h-full mr-2">
       <ul class="overflow-y-auto">
         <li v-for="user in users" :key="user.id"
             class="flex items-center p-2 cursor-pointer bg-gray-800 rounded-lg mb-1"
             :class="{ 'bg-gradient-to-r from-blue-600 to-purple-500 via-purple-600 to-orange-400': user.isActive, 'hover:bg-gray-700': !user.isActive }"
             @click="setActiveUser(user)">
-          <img class="h-10 w-10 rounded-full mr-3" :src="user.avatar" alt="User avatar">
+          <img class="h-10 w-10 rounded-full mr-3 object-cover" :src="user.avatar" alt="User avatar">
           <div class="text-white">
             <div class="font-semibold">{{ user.name }} {{ user.surname }}</div>
           </div>
@@ -16,20 +15,22 @@
       </ul>
     </div>
     
-    <!-- Область чата -->
+    <!-- Chat Area -->
     <div class="flex flex-col w-3/4 h-full bg-gray-800 rounded-lg">
       <div class="p-4 text-white text-xl border-b border-gray-700">
         Чат
       </div>
       <div class="flex-grow overflow-y-auto p-4 space-y-4">
-        <!-- Сообщения -->
+        <!-- Messages -->
         <div v-for="message in filteredMessages" :key="message.id"
-            :class="{'my-message': message.sender.userId === getUserDataFromLocalStorage().userId, 'other-message': message.sender.userId !== getUserDataFromLocalStorage().userId}">
+             :class="{'my-message': message.sender.userId === getUserDataFromLocalStorage().userId, 'other-message': message.sender.userId !== getUserDataFromLocalStorage().userId}">
           <div>
             <strong>{{ message.sender.name }} {{ message.sender.surname || '' }}</strong>
-            <!-- Добавлено отображение времени сообщения -->
-            <span class="text-sm text-gray-400">{{ message.time }}</span>
-            <div class="mb-[10px]"></div> 
+            <div class="flex justify-between items-center text-sm text-gray-400">
+              <span class="text-white">{{ message.date }}</span>
+              <span class="text-white">{{ message.time }}</span>
+            </div>
+            <div class="mb-[10px]"></div>
           </div>
           {{ message.content }}
         </div>
@@ -49,6 +50,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
@@ -162,6 +164,18 @@ const filteredMessages = computed(() => {
     return [];
   }
 });
+// Vue component script
+const groupedMessages = computed(() => {
+  // This groups messages by date
+  const grouped = messages.value.reduce((acc, message) => {
+    (acc[message.date] = acc[message.date] || []).push(message);
+    return acc;
+  }, {});
+  
+  // Convert the grouped messages object into an array and sort by date
+  return Object.keys(grouped).sort().map(date => ({ date, messages: grouped[date] }));
+});
+
 </script>
 
 

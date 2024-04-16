@@ -11,7 +11,7 @@
           <div class="bg-purple-500 h-2 rounded-full" :style="{ width: javascriptProgress + '%' }"></div>
         </div>
         <button class="w-full bg-purple-500 text-white rounded-full py-2 hover:bg-purple-600 transition ease-in-out duration-300"
-          @click="startTest('JavaScriptTest')">
+          @click="startTest('Тест по JS')">
           Начать
         </button>
       </div>
@@ -28,7 +28,7 @@
           <div class="bg-purple-500 h-2 rounded-full" :style="{ width: reactProgress + '%' }"></div>
         </div>
         <button class="w-full bg-purple-600 text-white rounded-full py-2 hover:bg-purple-700 transition ease-in-out duration-300"
-          @click="startTest('ReactTest')">
+          @click="startTest('Тест по React')">
           Начать
         </button>
       </div>
@@ -45,7 +45,7 @@
           <div class="bg-purple-500 h-2 rounded-full" :style="{ width: nestProgress + '%' }"></div>
         </div>
         <button class="w-full bg-purple-600 text-white rounded-full py-2 hover:bg-purple-700 transition ease-in-out duration-300"
-          @click="startTest('NestTest')">
+          @click="startTest('Тест по Nest')">
           Начать
         </button>
       </div>

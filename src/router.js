@@ -7,7 +7,6 @@ import ChangeProfile from './screens/ChangeProfile.vue'
 import Courses from './screens/Courses.vue'
 import Dashboard from './screens/Dashboard.vue'
 import Exam from './screens/Exam.vue'
-import LiveClass from './screens/LiveClass.vue'
 import Chat from './screens/Chat.vue'
 import Documentation from './screens/Documentation.vue'
 import Lessons from './screens/Lessons.vue'
@@ -34,70 +33,70 @@ const routes = [
 		children: [
 			{
 				path: '/',
-				name: 'Dashboard',
+				name: 'Главная',
 				component: Dashboard,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/courses',
-				name: 'Courses',
+				name: 'Курсы',
 				component: Courses,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/courses/:id',
-				name: 'Lessons',
+				name: 'Уроки',
 				component: Lessons,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/documentation',
-				name: 'Documentation',
+				name: 'Документация',
 				component: Documentation,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/exam',
-				name: 'Exam',
+				name: 'Тесты',
 				component: Exam,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/javascript-test',
-				name: 'JavaScriptTest',
+				name: 'Тест по JS',
 				component: JavaScriptTest,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/nest-js',
-				name: 'NestTest',
+				name: 'Тест по Nest',
 				component: NestTest,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/react-js',
-				name: 'ReactTest',
+				name: 'Тест по React',
 				component: ReactTest,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/chat',
-				name: 'Chat',
+				name: 'Чат',
 				component: Chat,
 				meta: { role: roles.user },
 			},
 			{
-				path: '/live-class',
-				name: 'Live Class',
-				component: LiveClass,
-				meta: { role: roles.user },
-			},
-			{
 				path: '/profile',
-				name: 'Change Profile',
+				name: 'Изменить Профиль',
 				component: ChangeProfile,
 				meta: { role: roles.user },
 			},
+			{
+				path: '/admin',
+				name: 'Админ панель',
+				component: Admin,
+				meta: { role: roles.admin },
+			}
 		],
 	},
 ]
