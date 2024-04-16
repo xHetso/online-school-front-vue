@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { roles } from './api/roles'
 import Layout from './components/Layout.vue'
-import Admin from './screens/Admin.vue'
+import AdminPanel from './screens/AdminPanel.vue'
 import Auth from './screens/Auth.vue'
 import ChangeProfile from './screens/ChangeProfile.vue'
 import Courses from './screens/Courses.vue'
@@ -13,17 +13,18 @@ import Lessons from './screens/Lessons.vue'
 import JavaScriptTest from './screens/JavaScriptTest.vue'
 import NestTest from './screens/NestTest.vue'
 import ReactTest from './screens/ReactTest.vue'
+/*
+import Statistics from './screens/adminPanel/Statistics.vue'
+import Teachers from './screens/adminPanel/Teachers.vue'
+import Users from './screens/adminPanel/Users.vue'
+import AdminLessons from './screens/adminPanel/AdminLessons.vue'
+*/
 
 const routes = [
 	{
 		path: '/auth',
 		name: 'Auth',
 		component: Auth,
-	},
-	{
-		path: '/admin',
-		name: 'Admin',
-		component: Admin,
 	},
 	{
 		path: '/',
@@ -42,6 +43,32 @@ const routes = [
 				name: 'Курсы',
 				component: Courses,
 				meta: { role: roles.user },
+			},
+			{
+				path: '/admin-lessons',
+				name: 'Админ Панель',
+				component: AdminPanel,
+				meta: { role: roles.user },
+				/*
+				children:[
+					{
+						name: 'Statistics',
+						component: Statistics,
+					},
+					{
+						name: 'Teachers',
+						component: Teachers,
+					},
+					{
+						name: 'AdminLessons',
+						component: AdminLessons,
+					},
+					{
+						name: 'Users',
+						component: Users,
+					}
+				]
+				*/
 			},
 			{
 				path: '/courses/:id',
@@ -91,12 +118,6 @@ const routes = [
 				component: ChangeProfile,
 				meta: { role: roles.user },
 			},
-			{
-				path: '/admin',
-				name: 'Админ панель',
-				component: Admin,
-				meta: { role: roles.admin },
-			}
 		],
 	},
 ]
@@ -112,11 +133,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-	const userRole = getUserRole()
-	if (to.meta.role && to.meta.role !== userRole) {
-		return next({ name: 'Auth' })
-	}
-	next()
-})
+    const userRole = getUserRole();
+    if (to.meta.role && to.meta.role !== userRole && userRole !== roles.admin) {
+        return next({ name: 'Auth' });
+    }
+    next();
+});
 
 export default router

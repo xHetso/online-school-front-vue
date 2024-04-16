@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const userName = ref('Loading...');
+const userRole = ref('')
 const userAvatar = ref('');
 
 function updateProfileData() {
@@ -9,6 +10,7 @@ function updateProfileData() {
   if (userStr) {
     const user = JSON.parse(userStr);
     userName.value = `${user.name} ${user.surname}`;
+    userRole.value = `${user.roles}`
     userAvatar.value = user.avatar
       ? `http://localhost:4200${user.avatar}?${new Date().getTime()}`
       : '/src/assets/images/anonym.webp';
@@ -36,8 +38,9 @@ onUnmounted(() => {
       :src="userAvatar"
       alt="Rounded avatar"
     />
-    <h1 class="text-2xl font-bold text-white mb-5">{{ userName }}</h1>
-    <router-link to="/profile" class="edit-button">Change Profile</router-link>
+    <h1 class="text-2xl font-bold text-white mb-2">{{ userName }}</h1>
+    <h1 class="text-xl font-bold text-white mb-5">{{ userRole }}</h1>
+    <router-link to="/profile" class="edit-button">Профиль</router-link>
   </div>
 </template>
 <style scoped>

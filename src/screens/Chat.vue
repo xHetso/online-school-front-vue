@@ -10,6 +10,7 @@
           <img class="h-10 w-10 rounded-full mr-3 object-cover" :src="user.avatar" alt="User avatar">
           <div class="text-white">
             <div class="font-semibold">{{ user.name }} {{ user.surname }}</div>
+            <div class="text-base">{{ user.roles }}</div>
           </div>
         </li>
       </ul>
@@ -77,6 +78,7 @@ onMounted(async () => {
       name: `${user.name}`,
       surname: `${user.surname}`,
       avatar: `http://localhost:4200${user.avatar}`, // Вы должны заменить это на путь к их аватарам, если они есть
+      roles: `${user.roles}`,
       isActive: false
     }));
   } catch (error) {

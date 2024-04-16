@@ -44,7 +44,7 @@ function logout() {
 			<nav-button-component to="/chat" name="Чат" />
 			<nav-button-component to="/documentation" name="Документация" />
 			<nav-button-component to="/exam" name="Тесты" />
-			<nav-button-component v-if="showAdminPanel" to="/admin" name="Админ панель" />
+			<nav-button-component v-if="showAdminPanel" to="/admin-lessons" name="Админ панель" />
 		</div>
 		<a class="logout-button" @click="logout">Выход</a>
 	</div>
