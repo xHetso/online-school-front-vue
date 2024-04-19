@@ -1,5 +1,6 @@
 <template>
     <div class="container mx-auto mt-5">
+    <a class="edit-button" href="#">Добавить автора</a>
       <table class="table-auto w-full">
         <thead class="text-xs text-white uppercase bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
           <tr>
@@ -47,6 +48,23 @@
   </script>
   
   <style scoped>
-  /* Add any custom styles here if needed, although Tailwind handles most of what you need */
+    .edit-button {
+        color: white;
+        padding: 10px 20px;
+        width: 200px;
+        border: 3px solid rgb(85, 16, 170);
+        border-radius: 25px;
+        cursor: pointer;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        text-transform: uppercase;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+        margin-bottom: 20px;
+    }
+    .edit-button:hover {
+        background-color: rgb(106, 0, 255);
+    }
   </style>
   

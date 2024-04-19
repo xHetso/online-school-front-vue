@@ -5,6 +5,7 @@ import Users from './adminPanel/Users.vue';
 import Teachers from './adminPanel/Teachers.vue';
 import AdminLessons from './adminPanel/AdminLessons.vue';
 import Authors from './adminPanel/Authors.vue';
+import AdminCourses from './adminPanel/AdminCourses.vue'
 
 const activeComponent = ref(Statistics);
 const activeButton = ref('Статистика'); // Default to 'Статистика'
@@ -20,9 +21,10 @@ function switchComponent(component, buttonLabel) {
 	  <div class="bg-gray-800 p-3 rounded-full">
 		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Статистика' }" @click="switchComponent(Statistics, 'Статистика')">Статистика</button>
 		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Пользователи' }" @click="switchComponent(Users, 'Пользователи')">Пользователи</button>
-		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Уроки' }" @click="switchComponent(AdminLessons, 'Уроки')">Уроки</button>
 		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Преподователи' }" @click="switchComponent(Teachers, 'Преподователи')">Преподователи</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Курсы' }" @click="switchComponent(AdminCourses, 'Курсы')">Курсы</button>
 		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Авторы' }" @click="switchComponent(Authors, 'Авторы')">Авторы</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Уроки' }" @click="switchComponent(AdminLessons, 'Уроки')">Уроки</button>
 	  </div>
 	</div>
 	<component :is="activeComponent"></component>
