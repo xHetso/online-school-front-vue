@@ -11,8 +11,8 @@
           <input v-model="editableLesson.slug" type="text" id="slug" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
         </div>
         <div>
-          <label for="videoUrl" class="block text-sm font-medium text-purple-700">URL видео:</label>
-          <input v-model="editableLesson.videoUrl" type="text" id="videoUrl" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+            <label for="videoFile" class="block text-sm font-medium text-purple-700">Загрузить видео:</label>
+            <input type="file" id="videoFile" @change="uploadVideo" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
         </div>
         <!-- Multi-select for Intensives -->
         <div>
@@ -121,5 +121,39 @@
       console.error('Failed to edit lesson:', error);
     }
   }
+  async function uploadVideo(event) {
+  const file = event.target.files[0];
+  if (!file) {
+    console.error('No video file selected');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await fetch('http://localhost:4200/api/files?folder=lessons', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.length > 0 && data[0].url) {
+        // Replace the entire object to ensure reactivity
+        editableLesson.value = {
+          ...editableLesson.value,
+          videoUrl: data[0].url // Update the video URL
+        };
+        console.log('Video uploaded:', editableLesson.value.videoUrl); // Log the updated video URL
+      }
+    } else {
+      throw new Error('Failed to upload video');
+    }
+  } catch (error) {
+    console.error('Error uploading video:', error);
+  }
+}
+
   </script>
   
