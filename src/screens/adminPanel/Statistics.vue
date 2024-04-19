@@ -26,11 +26,11 @@ onMounted(fetchUsers);
   <div class="flex gap-10 items-center justify-center">
     <div class="w-[250px] h-[250px] text-white flex flex-col items-center justify-center rounded-3xl bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
       <h1 class="font-semibold">{{ totalUsers }}</h1>
-      <h2 class="font-semibold">Пользователя</h2>
+      <h2 class="font-semibold">Пайдаланушылар</h2>
     </div>
     <div class="w-[250px] h-[250px] text-white flex flex-col items-center justify-center rounded-3xl bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
       <h1 class="font-semibold">{{ totalTeachers }}</h1>
-      <h2 class="font-semibold">Преподавателя</h2>
+      <h2 class="font-semibold">Мұғалімдер</h2>
     </div>
   </div>
 </template>

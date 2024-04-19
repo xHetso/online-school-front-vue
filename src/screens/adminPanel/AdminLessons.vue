@@ -1,17 +1,17 @@
 <template>
-	<a class="edit-button" @click="addLesson">Добавить урок</a>
+	<a class="edit-button" @click="addLesson">Сабақ қосу</a>
 	<EditAdminLesson v-if="showEditComponent" :lesson-id="currentLessonId" @updated="handleUpdate" />
   
 	<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
 	  <table class="w-full text-sm text-left text-white">
 		<thead class="text-xs text-white uppercase bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
 		<tr>
-		  <th scope="col" class="py-3 px-6">Intensive Name</th>
-		  <th scope="col" class="py-3 px-6">Lesson Title</th>
-		  <th scope="col" class="py-3 px-6">Video URL</th>
-		  <th scope="col" class="py-3 px-6">Exercises</th>
-		  <th scope="col" class="py-3 px-6">Author Name</th>
-		  <th scope="col" class="py-3 px-6">Actions</th>
+		  <th scope="col" class="py-3 px-6">Интенсив атауы</th>
+		  <th scope="col" class="py-3 px-6">Сабақтың атауы</th>
+		  <th scope="col" class="py-3 px-6">Бейне URL</th>
+		  <th scope="col" class="py-3 px-6">Жаттығулар</th>
+		  <th scope="col" class="py-3 px-6">Автордың аты</th>
+		  <th scope="col" class="py-3 px-6">Әрекеттер</th>
 		</tr>
 		</thead>
 		<tbody>

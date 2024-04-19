@@ -1,46 +1,46 @@
 <template>
-    <div class="p-4">
-      <form @submit.prevent="submitEdit(props.lessonId)" class="space-y-4 text-black bg-purple-100 p-4 rounded-lg">
-        <!-- Title and Slug Fields -->
-        <div>
-          <label for="title" class="block text-sm font-medium text-purple-700">Название урока:</label>
-          <input v-model="editableLesson.title" type="text" id="title" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+  <div class="p-4">
+    <form @submit.prevent="submitEdit(props.lessonId)" class="space-y-4 text-black bg-purple-100 p-4 rounded-lg">
+      <!-- Title and Slug Fields -->
+      <div>
+        <label for="title" class="block text-sm font-medium text-purple-700">Сабақтың атауы:</label>
+        <input v-model="editableLesson.title" type="text" id="title" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
+      <div>
+        <label for="slug" class="block text-sm font-medium text-purple-700">Slug:</label>
+        <input v-model="editableLesson.slug" type="text" id="slug" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
+      <div>
+          <label for="videoFile" class="block text-sm font-medium text-purple-700">Бейнежазба жүктеңіз:</label>
+          <input type="file" id="videoFile" @change="uploadVideo" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
+      <!-- Multi-select for Intensives -->
+      <div>
+        <label for="intensives" class="block text-sm font-medium text-purple-700">Интенсивтер:</label>
+        <select v-model="editableLesson.intensives" id="intensives" multiple class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+          <option v-for="intensive in allIntensives" :key="intensive._id" :value="intensive._id">{{ intensive.name }}</option>
+        </select>
+      </div>
+      <!-- Multi-select for Authors -->
+      <div>
+        <label for="authors" class="block text-sm font-medium text-purple-700">Авторлар:</label>
+        <select v-model="editableLesson.authors" id="authors" multiple class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+          <option v-for="author in allAuthors" :key="author._id" :value="author._id">{{ author.name }}</option>
+        </select>
+      </div>
+      <!-- Dynamic Exercise Inputs -->
+      <div>
+        <label class="block text-sm font-medium text-purple-700">Тапсырмалар:</label>
+        <div v-for="(exercise, index) in editableLesson.exercises" :key="index" class="mt-2">
+          <input v-model="editableLesson.exercises[index]" type="text" :id="'exercise-' + index" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+          <button @click.prevent="removeExercise(index)" class="mt-1 text-red-500">Жою</button>
         </div>
-        <div>
-          <label for="slug" class="block text-sm font-medium text-purple-700">Slug:</label>
-          <input v-model="editableLesson.slug" type="text" id="slug" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-        </div>
-        <div>
-            <label for="videoFile" class="block text-sm font-medium text-purple-700">Загрузить видео:</label>
-            <input type="file" id="videoFile" @change="uploadVideo" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-        </div>
-        <!-- Multi-select for Intensives -->
-        <div>
-          <label for="intensives" class="block text-sm font-medium text-purple-700">Интенсивы:</label>
-          <select v-model="editableLesson.intensives" id="intensives" multiple class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-            <option v-for="intensive in allIntensives" :key="intensive._id" :value="intensive._id">{{ intensive.name }}</option>
-          </select>
-        </div>
-        <!-- Multi-select for Authors -->
-        <div>
-          <label for="authors" class="block text-sm font-medium text-purple-700">Авторы:</label>
-          <select v-model="editableLesson.authors" id="authors" multiple class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-            <option v-for="author in allAuthors" :key="author._id" :value="author._id">{{ author.name }}</option>
-          </select>
-        </div>
-        <!-- Dynamic Exercise Inputs -->
-        <div>
-          <label class="block text-sm font-medium text-purple-700">Задания:</label>
-          <div v-for="(exercise, index) in editableLesson.exercises" :key="index" class="mt-2">
-            <input v-model="editableLesson.exercises[index]" type="text" :id="'exercise-' + index" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-            <button @click.prevent="removeExercise(index)" class="mt-1 text-red-500">Удалить</button>
-          </div>
-          <button @click.prevent="addExercise" class="mt-2 text-blue-500">Добавить задание</button>
-        </div>
-        <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Сохранить изменения</button>
-      </form>
-    </div>
-  </template>
+        <button @click.prevent="addExercise" class="mt-2 text-blue-500">Тапсырма қосу</button>
+      </div>
+      <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Өзгерістерді сақтау</button>
+    </form>
+  </div>
+</template>
   
   <script setup>
   import { ref, watch, onMounted } from 'vue'

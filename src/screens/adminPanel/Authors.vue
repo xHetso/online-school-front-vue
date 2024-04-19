@@ -46,16 +46,16 @@ async function handleUpdate() {
 </script>
 <template>
   <div class="container mx-auto mt-5">
-    <a class="edit-button" @click="addAuthor">Добавить автора</a>
+    <a class="edit-button" @click="addAuthor">Авторды қосу</a>
     <EditAuthor v-if="showEditAuthor" :author-id="currentAuthorId" @updated="handleUpdate" />
 
     <table class="table-auto w-full">
       <thead class="text-xs text-white uppercase bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
         <tr>
-          <th class="px-4 py-2">Photo</th>
-          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">Фотосы</th>
+          <th class="px-4 py-2">Аты</th>
           <th class="px-4 py-2">Slug</th>
-          <th class="px-4 py-2">Actions</th>
+          <th class="px-4 py-2">Кетіру</th>
         </tr>
       </thead>
       <tbody>

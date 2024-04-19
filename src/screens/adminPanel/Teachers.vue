@@ -35,14 +35,14 @@ onMounted(fetchUsers)
     <table class="w-full text-sm text-left text-white">
       <thead class="text-xs text-white uppercase bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
         <tr>
-          <th scope="col" class="py-3 px-6">Name</th>
-          <th scope="col" class="py-3 px-6">Surname</th>
+          <th scope="col" class="py-3 px-6">Аты</th>
+          <th scope="col" class="py-3 px-6">Тегі</th>
           <th scope="col" class="py-3 px-6">Email</th>
-          <th scope="col" class="py-3 px-6">City</th>
-          <th scope="col" class="py-3 px-6">Country</th>
-          <th scope="col" class="py-3 px-6">Social Media</th>
-          <th scope="col" class="py-3 px-6">Role</th>
-          <th scope="col" class="py-3 px-6">Action</th>
+          <th scope="col" class="py-3 px-6">Қала</th>
+          <th scope="col" class="py-3 px-6">Ел</th>
+          <th scope="col" class="py-3 px-6">Әлеуметтік желілері</th>
+          <th scope="col" class="py-3 px-6">Рөлі</th>
+          <th scope="col" class="py-3 px-6">Кетіру</th>
         </tr>
       </thead>
       <tbody>

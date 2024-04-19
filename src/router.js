@@ -23,48 +23,48 @@ import AdminLessons from './screens/adminPanel/AdminLessons.vue'
 const routes = [
 	{
 		path: '/auth',
-		name: 'Auth',
+		name: 'Авторизация',
 		component: Auth,
 	},
 	{
 		path: '/',
-		name: 'Layout',
+		name: 'Басты бет',
 		component: Layout,
 		meta: { role: roles.user },
 		children: [
 			{
 				path: '/',
-				name: 'Главная',
+				name: 'Басты бет',
 				component: Dashboard,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/courses',
-				name: 'Курсы',
+				name: 'Курстар',
 				component: Courses,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/admin-lessons',
-				name: 'Админ Панель',
+				name: 'Әкімшілік',
 				component: AdminPanel,
 				meta: { role: roles.user },
 				/*
 				children:[
 					{
-						name: 'Statistics',
+						name: 'Статистика',
 						component: Statistics,
 					},
 					{
-						name: 'Teachers',
+						name: 'Оқытушылар',
 						component: Teachers,
 					},
 					{
-						name: 'AdminLessons',
+						name: 'Әкімшілік сабақтар',
 						component: AdminLessons,
 					},
 					{
-						name: 'Users',
+						name: 'Пайдаланушылар',
 						component: Users,
 					}
 				]
@@ -72,37 +72,37 @@ const routes = [
 			},
 			{
 				path: '/courses/:id',
-				name: 'Уроки',
+				name: 'Сабақтар',
 				component: Lessons,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/documentation',
-				name: 'Документация',
+				name: 'Құжаттама',
 				component: Documentation,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/exam',
-				name: 'Тесты',
+				name: 'Тесттер',
 				component: Exam,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/javascript-test',
-				name: 'Тест по JS',
+				name: 'JavaScript бойынша тест',
 				component: JavaScriptTest,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/nest-js',
-				name: 'Тест по Nest',
+				name: 'NestJS бойынша тест',
 				component: NestTest,
 				meta: { role: roles.user },
 			},
 			{
 				path: '/react-js',
-				name: 'Тест по React',
+				name: 'ReactJS бойынша тест',
 				component: ReactTest,
 				meta: { role: roles.user },
 			},
@@ -114,7 +114,7 @@ const routes = [
 			},
 			{
 				path: '/profile',
-				name: 'Изменить Профиль',
+				name: 'Профильді өзгерту',
 				component: ChangeProfile,
 				meta: { role: roles.user },
 			},
@@ -135,7 +135,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const userRole = getUserRole();
     if (to.meta.role && to.meta.role !== userRole && userRole !== roles.admin) {
-        return next({ name: 'Auth' });
+        return next({ name: 'Авторизация' });
     }
     next();
 });

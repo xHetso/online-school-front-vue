@@ -3,53 +3,53 @@ import { ref } from 'vue';
 
 const questions = [
   {
-    text: 'Что такое NestJS?',
-    answers: ['JavaScript библиотека', 'React фреймворк', 'Node.js фреймворк', 'CSS фреймворк'],
+    text: 'Нест жүйесі дегеніміз не?',
+    answers: ['JavaScript кітапханасы', 'React фреймворкі', 'Node.js фреймворкі', 'CSS фреймворкі'],
     correct: 2,
   },
   {
-    text: 'Какой декоратор используется для создания нового маршрута в контроллере NestJS?',
+    text: 'NestJS контроллерінде жаңа маршрутты құру үшін қандай декоратор қолданылады?',
     answers: ['@Get()', '@Route()', '@Url()', '@Path()'],
     correct: 0,
   },
   {
-    text: 'Что такое модули в NestJS?',
-    answers: ['Компоненты пользовательского интерфейса', 'Функции для обработки запросов HTTP', 'Организационные блоки, которые инкапсулируют провайдеров', 'Стилевые файлы'],
+    text: 'NestJS-те модульдер дегеніміз не?',
+    answers: ['Пайдаланушы интерфейсінің компоненттері', 'HTTP сұраныстарын өңдеу функциялары', 'Провайдерлерді қамтитын ұйымдастыру блоктары', 'Стиль файлдары'],
     correct: 2,
   },
   {
-    text: 'Какой класс используется для обработки исключений в NestJS?',
+    text: 'NestJS-те қателіктерді өңдеу үшін қай сынып қолданылады?',
     answers: ['Error', 'Exception', 'HttpException', 'NestException'],
     correct: 2,
   },
   {
-    text: 'Какой механизм использует NestJS для внедрения зависимостей?',
-    answers: ['Конструкторы классов', 'Глобальные переменные', 'Синглтоны', 'Экспорты модулей'],
+    text: 'NestJS қандай механизмді тәуелділіктерді енгізу үшін қолданады?',
+    answers: ['Сынып конструкторлары', 'Глобалдық айнымалылар', 'Синглтоны', 'Модульдердің экспорты'],
     correct: 0,
   },
   {
-    text: 'Что возвращает декоратор @Injectable() в NestJS?',
-    answers: ['Класс', 'Функцию', 'Объект', 'Промис'],
+    text: '@Injectable() декораторы NestJS-те не қайтарады?',
+    answers: ['Сынып', 'Функция', 'Нысан', 'Уәде'],
     correct: 0,
   },
   {
-    text: 'Какой декоратор используется для объявления глобального модуля в NestJS?',
+    text: 'NestJS-те глобалды модульді жариялау үшін қандай декоратор қолданылады?',
     answers: ['@Global()', '@Module()', '@Controller()', '@Service()'],
     correct: 0,
   },
   {
-    text: 'Какой тип middleware NestJS поддерживает?',
-    answers: ['Только функциональный', 'Только классовый', 'И функциональный, и классовый', 'Ни одного из вышеперечисленных'],
+    text: 'NestJS қандай типті аралық бағдарламаны қолдайды?',
+    answers: ['Тек функционалды', 'Тек сыныпты', 'Функционалды және сыныпты', 'Жоғарыда аталғандардың ешқайсысы'],
     correct: 2,
   },
   {
-    text: 'Какой декоратор используется для внедрения тела запроса в метод контроллера NestJS?',
+    text: 'NestJS контроллерінің әдісіне сұраныс денесін енгізу үшін қандай декоратор қолданылады?',
     answers: ['@Body()', '@Request()', '@Query()', '@Param()'],
     correct: 0,
   },
   {
-    text: 'Чем является NestJS?',
-    answers: ['Фронтенд фреймворк', 'Бэкенд фреймворк', 'Полностековый фреймворк', 'База данных'],
+    text: 'NestJS не болып табылады?',
+    answers: ['Фронтенд фреймворкі', 'Бэкенд фреймворкі', 'Толық стек фреймворкі', 'Деректер базасы'],
     correct: 1,
   }
 ];
@@ -107,22 +107,22 @@ function calculateScore() {
           @click="calculateScore"
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         >
-          Показать результат
+          Нәтижені көрсету
         </button>
       </div>
   
       <div v-else class="mt-6">
-        <p class="text-xl font-bold mb-4">Ваш результат: {{ score }} из {{ questions.length }}</p>
+        <p class="text-xl font-bold mb-4">Сіздің нәтижеңіз: {{ score }} барлығы {{ questions.length }}</p>
         <ul>
           <li v-for="(question, index) in questions" :key="index" class="mb-3">
             <p class="font-semibold">{{ question.text }}</p>
             <p
               :class="{'text-green-500': userAnswers[index] === question.correct, 'text-red-500': userAnswers[index] !== question.correct}"
             >
-              Ваш ответ: {{ question.answers[userAnswers[index]] }}
+              Сіздің жауабыңыз:{{ question.answers[userAnswers[index]] }}
             </p>
             <p class="text-green-500">
-              Правильный ответ: {{ question.answers[question.correct] }}
+              Дұрыс жауап: {{ question.answers[question.correct] }}
             </p>
           </li>
         </ul>
@@ -130,13 +130,11 @@ function calculateScore() {
           @click="() => showResults = false"
           class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
         >
-          Попробовать снова
+          Қайта тапсыру
         </button>
       </div>
     </div>
   </template>
-  
-
 
 <style scoped>
 </style>

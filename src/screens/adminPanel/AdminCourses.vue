@@ -5,7 +5,7 @@ import EditAdminCourses from './EditAdminCourses.vue';
 
 const intensives = ref([]);
 const showEditComponent = ref(false);
-const currentIntensiveId = ref(null); // Добавляем ссылку для хранения ID текущего курса
+const currentIntensiveId = ref(null); // Қазіргі курстың ID-ін сақтау үшін сілтеме қосамыз
 
 onMounted(async () => {
   getIntensive();
@@ -16,7 +16,7 @@ async function getIntensive(){
     const response = await api.get('/intensives');
     intensives.value = response.data;
   } catch (error) {
-    console.error('Failed to fetch intensives:', error);
+    console.error('Интенсивті алу сәтсіз аяқталды:', error);
   }
 }
 
@@ -24,11 +24,11 @@ async function addIntensive() {
   try {
     const response = await api.post('/intensives');
     
-    currentIntensiveId.value = response.data; // Убедитесь, что здесь правильное имя свойства
+    currentIntensiveId.value = response.data; // Мұндағы дұрыс мүлік атауын тексеріңіз
     getIntensive();
     showEditComponent.value = true;
   } catch (error) {
-    console.error('Failed to add intensive:', error);
+    console.error('Интенсивті қосу сәтсіз аяқталды:', error);
   }
 }
 
@@ -37,29 +37,29 @@ async function deleteIntensive(id) {
     await api.delete(`/intensives/${id}`);
     intensives.value = intensives.value.filter(intensive => intensive._id !== id);
   } catch (error) {
-    console.error('Failed to delete intensive:', error);
+    console.error('Интенсивті жою сәтсіз аяқталды:', error);
   }
 }
 
 async function handleUpdate() {
-  await getIntensive(); // Обновляем данные
-  showEditComponent.value = false; // Скрываем форму
+  await getIntensive(); // Деректерді жаңартамыз
+  showEditComponent.value = false; // Форманы жасырамыз
 }
 </script>
 
 <template>
-  <a class="edit-button" @click="addIntensive()">Добавить курс</a>
+  <a class="edit-button" @click="addIntensive()">Курс қосу</a>
   <EditAdminCourses v-if="showEditComponent" :intensive-id="currentIntensiveId" @updated="handleUpdate" />
 
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-white">
         <thead class="text-xs text-white bg-gradient-to-r" style="background-image: linear-gradient(to right, #1971f6, #8b52ff, #ff7654);">
           <tr>
-            <th class="py-3 px-6">Name</th>
-            <th class="py-3 px-6">Description</th>
+            <th class="py-3 px-6">Атауы</th>
+            <th class="py-3 px-6">Сипаттамасы</th>
             <th class="py-3 px-6">Slug</th> 
-            <th class="py-3 px-6">Poster</th>
-            <th class="py-3 px-6">Actions</th>
+            <th class="py-3 px-6">Постер</th>
+            <th class="py-3 px-6">Әрекеттер</th>
           </tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@ async function handleUpdate() {
             <td class="py-3 px-6">{{ intensive.description }}</td>
             <td class="py-3 px-6">{{ intensive.slug }}</td>
             <td class="py-3 px-6">
-              <img :src="'http://localhost:4200'+intensive.poster" alt="Poster" class="h-20 w-auto">
+              <img :src="'http://localhost:4200'+intensive.poster" alt="Постер" class="h-20 w-auto">
             </td>
             <td class="px-4 py-2 text-center">
               <button @click="deleteIntensive(intensive._id)" class="text-red-500 hover:text-red-700">
@@ -80,7 +80,6 @@ async function handleUpdate() {
       </table>
     </div>
   </template>
-  
   
 <style scoped>
     .edit-button {

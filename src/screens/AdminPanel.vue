@@ -8,7 +8,7 @@ import Authors from './adminPanel/Authors.vue';
 import AdminCourses from './adminPanel/AdminCourses.vue'
 
 const activeComponent = ref(Statistics);
-const activeButton = ref('Статистика'); // Default to 'Статистика'
+const activeButton = ref('Статистика'); // Әдепкі 'Статистика'
 
 function switchComponent(component, buttonLabel) {
   activeComponent.value = component;
@@ -20,15 +20,15 @@ function switchComponent(component, buttonLabel) {
 	<div class="flex justify-center items-center mb-10">
 	  <div class="bg-gray-800 p-3 rounded-full">
 		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Статистика' }" @click="switchComponent(Statistics, 'Статистика')">Статистика</button>
-		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Пользователи' }" @click="switchComponent(Users, 'Пользователи')">Пользователи</button>
-		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Преподователи' }" @click="switchComponent(Teachers, 'Преподователи')">Преподователи</button>
-		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Курсы' }" @click="switchComponent(AdminCourses, 'Курсы')">Курсы</button>
-		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Авторы' }" @click="switchComponent(Authors, 'Авторы')">Авторы</button>
-		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Уроки' }" @click="switchComponent(AdminLessons, 'Уроки')">Уроки</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Пайдаланушылар' }" @click="switchComponent(Users, 'Пайдаланушылар')">Пайдаланушылар</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Оқытушылар' }" @click="switchComponent(Teachers, 'Оқытушылар')">Оқытушылар</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Курстар' }" @click="switchComponent(AdminCourses, 'Курстар')">Курстар</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Авторлар' }" @click="switchComponent(Authors, 'Авторлар')">Авторлар</button>
+		<button class="btn-nav" :class="{ 'btn-active': activeButton === 'Сабақтар' }" @click="switchComponent(AdminLessons, 'Сабақтар')">Сабақтар</button>
 	  </div>
 	</div>
 	<component :is="activeComponent"></component>
-  </template>
+</template>
 <style scoped>
 .btn-nav {
 	color: white;
