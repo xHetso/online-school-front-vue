@@ -5,7 +5,11 @@
 
     <a href="#javascript-basic" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">2# JavaScript негіздері</a>
     <a href="#javascript-function" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">3# JavaScript функциялары жөнінде құжаттама</a>
-    
+    <a href="#javascript-objects" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">4# JavaScript объектілері</a>
+    <a href="#javascript-async" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">5# JavaScript асинхрон программалау</a>
+    <a href="#javascript-server-side" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">6# Сервер жағы JavaScript</a>
+    <a href="#javascript-testing" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">7# JavaScript тестілеу</a>
+    <a href="#javascript-frameworks" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg m-2">8# JavaScript фреймворктары</a>
 </div>
 
     
@@ -100,6 +104,82 @@
             <p class="mt-4">JavaScript-те функцияларды пайдалану кодты тиімді түрде құрылымдауға, оны оқымалы етіп жасауға және тестілеу және дебагтау үшін жеңілдетуге мүмкіндік береді. Әртүрлі функция түрлерінің және олардың ерекшеліктерінің маңызын түсіну JavaScript әзірлеуші үшін негізгі дағды болып табылады.</p>
         </div>
     </div>
+    <div class="bg-gray-800 text-white rounded-[40px] p-4 mt-8">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold" id="javascript-objects">JavaScript объектілері</h1>
+        <p class="mt-4">JavaScript-те объектілер - бұл кілттер мен мәндерден тұратын құрылымдар, олардың арқасында бір немесе бірнеше мәліметтерді бірлестіруге болады. Объекттер деректер моделін құру үшін қолданылады және олардың әрбір қасиетіне кілт арқылы қол жеткізуге болады.</p>
+        <pre class="bg-gray-700 text-white p-2 rounded-lg">
+        <code>const person = {
+            name: "John",
+            age: 30,
+            greet: function() { console.log("Hello, " + this.name); }
+        };
+        person.greet(); // Outputs: Hello, John
+        </code></pre>
+                <p class="mt-4">JavaScript объекттері әртүрлі әдістерді және қасиеттерді қамтуы мүмкін, және оларды әр түрлі тіл элементтерімен қолдануға болады.</p>
+            </div>
+        </div>
+        <div class="bg-gray-800 text-white rounded-[40px] p-4 mt-8">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold" id="javascript-async">JavaScript асинхрон программалау</h1>
+        <p class="mt-4">JavaScript асинхрон программалауда Promise объектілерін, async және await кілт сөздерін пайдаланады. Бұл әдістер веб-сұраныстар сияқты кідіртпелі операцияларды жеңілдетуге мүмкіндік береді.</p>
+        <pre class="bg-gray-700 text-white p-2 rounded-lg">
+        <code>// Promise қолдану мысалы
+        fetch('https://api.example.com/data')
+            .then(response => response.json())
+            .then(data => console.log(data));
+
+        // Async/Await қолдану мысалы
+        async function fetchData() {
+            const response = await fetch('https://api.example.com/data');
+            const data = await response.json();
+            console.log(data);
+        }
+        fetchData();
+        </code></pre>
+                <p class="mt-4">Асинхрон программалау кодтың оқымалылығын арттырады және кідіртпелі кодты басқаруды жеңілдетеді.</p>
+            </div>
+        </div>
+        <div class="bg-gray-800 text-white rounded-[40px] p-4 mt-8">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold" id="javascript-server-side">Сервер жағы JavaScript</h1>
+        <p class="mt-4">Node.js - бұл сервер жағында JavaScript кодын орындауға мүмкіндік беретін платформа. Ол асинхрондық оқиға-бағытталған API-ларды қолдайды, бұл веб-серверлерді және басқа да сервер жағы қосымшаларын жылдам құруға мүмкіндік береді.</p>
+        <pre class="bg-gray-700 text-white p-2 rounded-lg">
+        <code>const http = require('http');
+
+        const server = http.createServer((req, res) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/plain');
+            res.end('Hello World\n');
+        });
+
+        server.listen(3000, () => {
+            console.log('Server running at http://localhost:3000/');
+        });
+        </code></pre>
+                <p class="mt-4">Node.js кең тараған веб-фреймворктармен, мәліметтер базасымен және басқа серверлік құралдармен жұмыс істеуге қабілетті.</p>
+            </div>
+        </div>
+        <div class="bg-gray-800 text-white rounded-[40px] p-4 mt-8">
+            <div class="container mx-auto p-4">
+                <h1 class="text-3xl font-bold" id="javascript-testing">JavaScript тестілеу</h1>
+                <p class="mt-4">Тестілеу - бұл JavaScript кодының сенімділігін және жұмыс істеуін қамтамасыз ету үшін маңызды процесс. Jest, Mocha, және Jasmine сияқты тестілеу кітапханалары кең таралған.</p>
+                <pre class="bg-gray-700 text-white p-2 rounded-lg">
+        <code>// Jest қолдану мысалы
+        test('adds 1 + 2 to equal 3', () => {
+            expect(1 + 2).toBe(3);
+        });
+        </code></pre>
+                <p class="mt-4">Бұл кітапханалар кодтың тұрақтылығын арттыруға және бағдарламалық қамтамасыз етудің сапасын жақсартуға көмектеседі.</p>
+            </div>
+        </div>
+        <div class="bg-gray-800 text-white rounded-[40px] p-4 mt-8">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold" id="javascript-frameworks">JavaScript фреймворктары</h1>
+        <p class="mt-4">JavaScript фреймворктары, мысалы React, Angular және Vue, веб-қосымшаларды жылдам әрі тиімді құруға мүмкіндік береді. Олар қолданушы интерфейсінің күрделі элементтерін жеңілдетеді және көптеген құрылғыларға бейімделуге көмектеседі.</p>
+                <p class="mt-4">Бұл фреймворктар әзірлеу процесін стандартизациялайды және кодтың қайта пайдаланымдылығын жақсартады.</p>
+            </div>
+        </div>
 
 </template>
 <style scoped></style>
