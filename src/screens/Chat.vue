@@ -1,13 +1,13 @@
 <template>
   <div class="flex h-[800px] p-4 bg-gray-900">
-    <!-- User List -->
+    <!-- Пайдаланушылар тізімі -->
     <div class="flex flex-col w-1/4 h-full mr-2">
       <ul class="overflow-y-auto">
         <li v-for="user in users" :key="user.id"
             class="flex items-center p-2 cursor-pointer bg-gray-800 rounded-lg mb-1"
             :class="{ 'bg-gradient-to-r from-blue-600 to-purple-500 via-purple-600 to-orange-400': user.isActive, 'hover:bg-gray-700': !user.isActive }"
             @click="setActiveUser(user)">
-          <img class="h-10 w-10 rounded-full mr-3 object-cover" :src="user.avatar" alt="User avatar">
+          <img class="h-10 w-10 rounded-full mr-3 object-cover" :src="user.avatar" alt="Пайдаланушы аватары">
           <div class="text-white">
             <div class="font-semibold">{{ user.name }} {{ user.surname }}</div>
             <div class="text-base">{{ user.roles }}</div>
@@ -15,44 +15,41 @@
         </li>
       </ul>
     </div>
-    
-    <!-- Chat Area -->
-    <div class="flex flex-col w-3/4 h-full bg-gray-800 rounded-lg">
-      <div class="p-4 text-white text-xl border-b border-gray-700">
-        Чат
-      </div>
-      <div class="flex-grow overflow-y-auto p-4 space-y-4">
-        <!-- Messages -->
-        <div v-for="message in filteredMessages" :key="message.id"
-             :class="{'my-message': message.sender.userId === getUserDataFromLocalStorage().userId, 'other-message': message.sender.userId !== getUserDataFromLocalStorage().userId}">
-          <div>
-            <strong>{{ message.sender.name }} {{ message.sender.surname || '' }}</strong>
-            <div class="flex justify-between items-center text-sm text-gray-400">
-              <span class="text-white">{{ message.date }}</span>
-              <span class="text-white">{{ message.time }}</span>
-            </div>
-            <div class="mb-[10px]"></div>
-          </div>
-          {{ message.content }}
-        </div>
-        <div v-if="!filteredMessages.length" class="text-gray-400 text-center">Нет сообщений</div>
-      </div>
-
-      <div class="p-4 flex">
-        <input v-model="newMessage" type="text"
-               class="flex-grow p-2 bg-gray-700 text-white rounded-lg mr-4 focus:outline-none focus:ring focus:ring-purple-500"
-               placeholder="Напишите ваше сообщение здесь..."
-               @keyup.enter="sendMessage">
-        <button @click="sendMessage"
-                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-purple-500">
-          Отправить
-        </button>
-      </div>
-    </div>
+    <!-- Чат аймағы -->
+<div class="flex flex-col w-3/4 h-full bg-gray-800 rounded-lg">
+  <div class="p-4 text-white text-xl border-b border-gray-700">
+    Чат
   </div>
+  <div class="flex-grow overflow-y-auto p-4 space-y-4">
+    <!-- Хабарламалар -->
+    <div v-for="message in filteredMessages" :key="message.id"
+         :class="{'my-message': message.sender.userId === getUserDataFromLocalStorage().userId, 'other-message': message.sender.userId !== getUserDataFromLocalStorage().userId}">
+      <div>
+        <strong>{{ message.sender.name }} {{ message.sender.surname || '' }}</strong>
+        <div class="flex justify-between items-center text-sm text-gray-400">
+          <span class="text-white">{{ message.date }}</span>
+          <span class="text-white">{{ message.time }}</span>
+        </div>
+        <div class="mb-[10px]"></div>
+      </div>
+      {{ message.content }}
+    </div>
+    <div v-if="!filteredMessages.length" class="text-gray-400 text-center">Хабарламалар жоқ</div>
+  </div>
+
+  <div class="p-4 flex">
+    <input v-model="newMessage" type="text"
+           class="flex-grow p-2 bg-gray-700 text-white rounded-lg mr-4 focus:outline-none focus:ring focus:ring-purple-500"
+           placeholder="Мұнда хабарламаңызды жазыңыз..."
+           @keyup.enter="sendMessage">
+    <button @click="sendMessage"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-purple-500">
+      Жіберу
+    </button>
+  </div>
+</div>
+</div>
 </template>
-
-
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { io } from 'socket.io-client';
@@ -61,29 +58,29 @@ const users = ref([]);
 
 onMounted(async () => {
   try {
-    // Делаем запрос к вашему API
+    // Сіздің API-ға сұрау жасау
     const response = await fetch('http://localhost:4200/api/users');
     
     if (!response.ok) {
-      // Обработка возможной ошибки HTTP
+      // HTTP қатесін өңдеу мүмкін
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Получаем JSON из ответа
+    // Жауаптан JSON алу
     const data = await response.json();
 
-    // Обновляем данные пользователей
+    // Пайдаланушылар деректерін жаңарту
     users.value = data.map(user => ({
       id: user._id,
       name: `${user.name}`,
       surname: `${user.surname}`,
-      avatar: `http://localhost:4200${user.avatar}`, // Вы должны заменить это на путь к их аватарам, если они есть
+      avatar: `http://localhost:4200${user.avatar}`, // Олардың аватарларына деген жолды ауыстырыңыз, егер олар бар болса
       roles: `${user.roles}`,
       isActive: false
     }));
   } catch (error) {
-    // Обработка ошибок запроса или JSON парсинга
-    console.error("There was a problem fetching the user data:", error);
+    // Сұрау немесе JSON талдау қателерін өңдеу
+    console.error("Пайдаланушы деректерін алу кезінде проблема туындады:", error);
   }
 });
 
@@ -92,9 +89,9 @@ const getUserDataFromLocalStorage = () => {
   if (userStr) {
     const userObj = JSON.parse(userStr);
     return {
-      userId: userObj._id, // Убедитесь, что `_id` существует в объекте
-      name: userObj.name, // Извлекаем имя
-      surname: userObj.surname // Извлекаем фамилию
+      userId: userObj._id, // `_id` объектте бар екенін тексеріңіз
+      name: userObj.name, // Атын алыңыз
+      surname: userObj.surname // Тегін алыңыз
     };
   }
   return null;
@@ -102,7 +99,7 @@ const getUserDataFromLocalStorage = () => {
 
 const messages = ref([]);
 const newMessage = ref('');
-const socket = io('http://localhost:4200/api/chat'); // Замените на URL вашего сервера
+const socket = io('http://localhost:4200/api/chat'); // Серверіңіздің URL-ына ауыстырыңыз
 
 const activeUser = ref(null);
 
@@ -112,7 +109,7 @@ onMounted(() => {
       const parsedHistory = JSON.parse(history);
       messages.value = parsedHistory;
     } catch (error) {
-      console.error('Ошибка при парсинге истории чата:', error);
+      console.error('Чат тарихын талдау кезінде қате:', error);
     }
   });
 
@@ -128,15 +125,15 @@ onUnmounted(() => {
 
 const sendMessage = () => {
   if (newMessage.value.trim()) {
-    // Получаем данные текущего пользователя из localStorage
+    // Ағымдағы пайдаланушының деректерін localStorage-тен алыңыз
     const senderObj = getUserDataFromLocalStorage();
     if (senderObj && activeUser.value) {
       const messageContent = {
-        senderId: senderObj.userId, // ID текущего пользователя
+        senderId: senderObj.userId, // Ағымдағы пайдаланушының ID-і
         senderName: senderObj.name,
         senderSurname: senderObj.surname,
-        content: newMessage.value, // Содержимое сообщения
-        // Добавляем данные выбранного пользователя, которому отправляем сообщение
+        content: newMessage.value, // Хабарлама мазмұны
+        // Хабарлама жіберілетін таңдалған пайдаланушының деректерін қосыңыз
         recipientId: activeUser.value.id, 
         recipientName: activeUser.value.name,
         recipientSurname: activeUser.value.surname,
@@ -144,7 +141,7 @@ const sendMessage = () => {
       socket.emit('chatToServer', messageContent);
       newMessage.value = '';
     } else {
-      console.error('User details are not available');
+      console.error('Пайдаланушы деректері қолжетімді емес');
     }
   }
 };
@@ -166,20 +163,19 @@ const filteredMessages = computed(() => {
     return [];
   }
 });
-// Vue component script
+// Vue компонентінің сценарийі
 const groupedMessages = computed(() => {
-  // This groups messages by date
+  // Бұл хабарламаларды күні бойынша топтастырады
   const grouped = messages.value.reduce((acc, message) => {
     (acc[message.date] = acc[message.date] || []).push(message);
     return acc;
   }, {});
   
-  // Convert the grouped messages object into an array and sort by date
+  // Топтастырылған хабарламалар объектісін массивке айналдырып, күні бойынша сұрыптаңыз
   return Object.keys(grouped).sort().map(date => ({ date, messages: grouped[date] }));
 });
 
 </script>
-
 
 <style scoped>
 .my-message {

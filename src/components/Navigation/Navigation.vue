@@ -20,17 +20,17 @@ onMounted(() => {
 });
 
 function logout() {
-  // Функция удаления куки
+  // Функция удаления печенья
   function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;
   }
 
-  // Удаление ключей из куки
+  // Печеньялардың кілттерін жою
   localStorage.removeItem('accessToken');
   localStorage.removeItem('user');
   deleteCookie('refreshToken');
 
-  // Перенаправление на страницу аутентификации
+  // Аутентификация бетіне бағыттау
   router.push('/auth');
 }
 </script>
@@ -39,14 +39,14 @@ function logout() {
 	<div class="navigation flex flex-col items-center">
 		<nav-profile-component />
 		<div class="flex flex-col justify-center items-center">
-			<nav-button-component to="/" name="Главная" />
-			<nav-button-component to="/courses" name="Курсы" />
+			<nav-button-component to="/" name="Басты" />
+			<nav-button-component to="/courses" name="Курстар" />
 			<nav-button-component to="/chat" name="Чат" />
-			<nav-button-component to="/documentation" name="Документация" />
-			<nav-button-component to="/exam" name="Тесты" />
-			<nav-button-component v-if="showAdminPanel" to="/admin-lessons" name="Админ панель" />
+			<nav-button-component to="/documentation" name="Құжаттама" />
+			<nav-button-component to="/exam" name="Тестілеу" />
+			<nav-button-component v-if="showAdminPanel" to="/admin-lessons" name="Әкімшілік" />
 		</div>
-		<a class="logout-button" @click="logout">Выход</a>
+		<a class="logout-button" @click="logout">Шығу</a>
 	</div>
 </template>
 
@@ -70,7 +70,7 @@ function logout() {
 .logout-button {
 	position: absolute;
 	bottom: 20px;
-  	margin-bottom: 10px; /* Или другое значение для отступа снизу */
+  	margin-bottom: 10px; /* Немесе басқа төменгі жақтау мәні */
 	  color: white;
     padding: 10px 20px;
     width: 200px;

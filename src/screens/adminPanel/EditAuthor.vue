@@ -1,22 +1,22 @@
 <template>
-    <div class="p-4">
-      <form @submit.prevent="submitEdit(props.authorId)" class="space-y-4 text-black bg-purple-100 p-4 rounded-lg">
-        <div>
-          <label for="name" class="block text-sm font-medium text-purple-700">Имя:</label>
-          <input v-model="editableAuthor.name" type="text" id="name" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-        </div>
-        <div>
-          <label for="slug" class="block text-sm font-medium text-purple-700">Slug:</label>
-          <input v-model="editableAuthor.slug" type="text" id="slug" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-        </div>
-        <div>
-          <label for="file" class="block text-sm font-medium text-purple-700">Загрузить фото:</label>
-          <input type="file" id="file" @change="uploadFile" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
-        </div>
-        <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Сохранить изменения</button>
-      </form>
-    </div>
-  </template>
+  <div class="p-4">
+    <form @submit.prevent="submitEdit(props.authorId)" class="space-y-4 text-black bg-purple-100 p-4 rounded-lg">
+      <div>
+        <label for="name" class="block text-sm font-medium text-purple-700">Аты:</label>
+        <input v-model="editableAuthor.name" type="text" id="name" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
+      <div>
+        <label for="slug" class="block text-sm font-medium text-purple-700">Slug:</label>
+        <input v-model="editableAuthor.slug" type="text" id="slug" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
+      <div>
+        <label for="file" class="block text-sm font-medium text-purple-700">Сурет жүктеңіз:</label>
+        <input type="file" id="file" @change="uploadFile" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
+      <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Өзгерістерді сақтаңыз</button>
+    </form>
+  </div>
+</template>
   
   <script setup>
   import { ref, watch, defineProps, defineEmits } from 'vue';

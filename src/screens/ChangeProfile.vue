@@ -8,8 +8,8 @@
       />
 			</div>
 			<div>
-				<h1 class="text-2xl mb-[20px]">Name:</h1>
-				<h1 class="text-2xl mb-[20px]">Surname:</h1>
+				<h1 class="text-2xl mb-[20px]">Аты:</h1>
+				<h1 class="text-2xl mb-[20px]">Тегі:</h1>
 			</div>
 			<div class="flex flex-col">
 				<input
@@ -26,17 +26,17 @@
 		</div>
 
 		<div class="flex justify-center items-center mb-10">
-      <button class="edit-button" @click="changePhoto">Change photo</button>
+      <button class="edit-button" @click="changePhoto">Суретті өзгерту</button>
     </div>
 
 		<div class="center-settings flex gap-10 justify-center items-center">
 			<div>
-				<h1 class="text-2xl mb-[20px] text-center">General profile settings</h1>
+				<h1 class="text-2xl mb-[20px] text-center">Жалпы профиль параметрлері</h1>
 				<div class="main-profile flex gap-5 justify-center items-center">
 					<div>
 						<h1 class="text-2xl mb-[20px]">Email:</h1>
-						<h1 class="text-2xl mb-[20px]">Country:</h1>
-						<h1 class="text-2xl mb-[20px]">City:</h1>
+						<h1 class="text-2xl mb-[20px]">Ел:</h1>
+						<h1 class="text-2xl mb-[20px]">Қала:</h1>
 					</div>
 					<div class="flex flex-col">
 						<input
@@ -57,7 +57,7 @@
 					</div>
 				</div>
 				<div>
-					<h1 class="text-2xl">Detailed Information:</h1>
+					<h1 class="text-2xl">Толық ақпарат:</h1>
 					<textarea
 						class="detailed-input mb-[20px]"
 						v-model="formData.information"
@@ -66,7 +66,7 @@
 			</div>
 
 			<div>
-				<h1 class="text-2xl mb-[20px] text-center">Social Network</h1>
+				<h1 class="text-2xl mb-[20px] text-center">Әлеуметтік желі</h1>
 				<div class="main-profile flex gap-10 justify-center items-center mb-20">
 					<div>
 						<h1 class="text-2xl mb-[20px]">Instagram:</h1>
@@ -92,12 +92,13 @@
 					</div>
 				</div>
 				<div class="flex justify-center items-center mb-10">
-					<button class="save-btn" type="submit">Save changes</button>
+					<button class="save-btn" type="submit">Cақтау</button>
 				</div>
 			</div>
 		</div>
 	</form>
 </template>
+
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue'

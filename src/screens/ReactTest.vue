@@ -3,53 +3,53 @@ import { ref } from 'vue';
 
 const questions = [
   {
-    text: 'Что делает JSX в React?',
-    answers: ['Предоставляет синтаксис для написания HTML в JavaScript', 'Запускает серверный рендеринг', 'Создает новые компоненты React', 'Оптимизирует производительность приложения'],
+    text: 'JSX React-та не істейді?',
+    answers: ['JavaScript-те HTML жазу үшін синтаксисті ұсынады', 'Серверлік рендерингді іске қосады', 'Жаңа React компоненттерін жасайды', 'Қолданбаның өнімділігін оптимизациялайды'],
     correct: 0,
   },
   {
-    text: 'Какой хук в React используется для работы с состоянием компонента?',
+    text: 'React-те компоненттің күйімен жұмыс істеу үшін қандай хук қолданылады?',
     answers: ['useEffect', 'useState', 'useContext', 'useReducer'],
     correct: 1,
   },
   {
-    text: 'Что такое props в React?',
-    answers: ['Локальные переменные компонента', 'Глобальные переменные приложения', 'Параметры, передаваемые компоненту', 'Функции обратного вызова'],
+    text: 'React-те props дегеніміз не?',
+    answers: ['Компоненттің жергілікті айнымалылары', 'Қолданбаның глобалдық айнымалылары', 'Компонентке берілген параметрлер', 'Кері шақыру функциялары'],
     correct: 2,
   },
   {
-    text: 'Какой метод жизненного цикла компонента вызывается первым при монтировании?',
+    text: 'Компонентті монтировать ету кезінде бірінші болып қандай өмірлік цикл әдісі шақырылады?',
     answers: ['componentDidMount', 'componentDidUpdate', 'componentWillUnmount', 'constructor'],
     correct: 3,
   },
   {
-    text: 'Какой хук React используется для выполнения побочных эффектов в функциональных компонентах?',
+    text: 'Функционалдық компоненттерде жанама әсерлерді орындау үшін қандай React хукы қолданылады?',
     answers: ['useState', 'useEffect', 'useReducer', 'useRef'],
     correct: 1,
   },
   {
-    text: 'Какой из этих методов не используется в классовых компонентах React?',
+    text: 'React-тің класс компоненттерінде қандай әдістер қолданылмайды?',
     answers: ['setState', 'forceUpdate', 'render', 'useProps'],
     correct: 3,
   },
   {
-    text: 'Что такое Context в React?',
-    answers: ['Способ управления состоянием', 'Инструмент для оптимизации производительности', 'Способ передачи данных через дерево компонентов без пропсов', 'Шаблон проектирования для компонентов'],
+    text: 'React-те Context дегеніміз не?',
+    answers: ['Күйді басқару әдісі', 'Өнімділікті оптимизациялау құралы', 'Пропстарсыз компонент ағашы арқылы деректерді беру әдісі', 'Компоненттерді жобалау үлгісі'],
     correct: 2,
   },
   {
-    text: 'Какой хук используется для получения доступа к предыдущему значению props или state в React?',
+    text: 'React-те props немесе state-тің алдыңғы мәніне қол жеткізу үшін қандай хук қолданылады?',
     answers: ['useRef', 'usePrevious', 'useMemo', 'useImperativeHandle'],
     correct: 0,
   },
   {
-    text: 'Какой метод нужно использовать для предотвращения повторного рендеринга в классовом компоненте React?',
+    text: 'React класс компонентінде қайталама рендерингті болдырмау үшін қандай әдісті пайдалану керек?',
     answers: ['shouldComponentUpdate', 'componentWillUpdate', 'componentDidUpdate', 'preventRender'],
     correct: 0,
   },
   {
-    text: 'Что делает хук useCallback в React?',
-    answers: ['Создает запомненный коллбэк', 'Следит за изменениями переменной', 'Оптимизирует производительность компонентов', 'Сохраняет данные между рендерами'],
+    text: 'React-те useCallback хукі не істейді?',
+    answers: ['Есте сақталған коллбэк жасайды', 'Айнымалының өзгерістерін бақылайды', 'Компоненттердің өнімділігін оптимизациялайды', 'Рендерлер арасында деректерді сақтайды'],
     correct: 0,
   }
 ];
@@ -106,22 +106,22 @@ function calculateScore() {
           @click="calculateScore"
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         >
-          Показать результат
+          Нәтижені көрсету
         </button>
       </div>
   
       <div v-else class="mt-6">
-        <p class="text-xl font-bold mb-4">Ваш результат: {{ score }} из {{ questions.length }}</p>
+        <p class="text-xl font-bold mb-4">Сіздің нәтижеңіз:  {{ score }} барлығы {{ questions.length }}</p>
         <ul>
           <li v-for="(question, index) in questions" :key="index" class="mb-3">
             <p class="font-semibold">{{ question.text }}</p>
             <p
               :class="{'text-green-500': userAnswers[index] === question.correct, 'text-red-500': userAnswers[index] !== question.correct}"
             >
-              Ваш ответ: {{ question.answers[userAnswers[index]] }}
+              Сіздің жауабыңыз:{{ question.answers[userAnswers[index]] }}
             </p>
             <p class="text-green-500">
-              Правильный ответ: {{ question.answers[question.correct] }}
+              Дұрыс жауап: {{ question.answers[question.correct] }}
             </p>
           </li>
         </ul>
@@ -129,7 +129,7 @@ function calculateScore() {
           @click="() => showResults = false"
           class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
         >
-          Попробовать снова
+          Қайта тапсыру
         </button>
       </div>
     </div>

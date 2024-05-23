@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center space-x-16">
-    <!-- Javascript Card -->
+    <!-- Javascript карточкасы -->
     <div class="transform transition duration-300 hover:scale-105 w-72 border-2 border-purple-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg">
       <div class="p-5 text-center">
         <div class="mx-auto mb-4 rounded-full w-[200px] h-[200px] flex items-center justify-center bg-yellow-100 border-2 border-yellow-300">
@@ -11,13 +11,13 @@
           <div class="bg-purple-500 h-2 rounded-full" :style="{ width: javascriptProgress + '%' }"></div>
         </div>
         <button class="w-full bg-purple-500 text-white rounded-full py-2 hover:bg-purple-600 transition ease-in-out duration-300"
-          @click="startTest('Тест по JS')">
-          Начать
+          @click="startTest('JavaScript бойынша тест')">
+          Бастау
         </button>
       </div>
     </div>
 
-    <!-- React JS Card -->
+    <!-- React JS карточкасы -->
     <div class="transform transition duration-500 hover:scale-105 w-72 border-2 border-purple-300 rounded-lg shadow-md overflow-hidden">
       <div class="p-5 text-center">
         <div class="mx-auto mb-4 rounded-full w-[200px] h-[200px] flex items-center justify-center bg-blue-200 border-2 border-blue-300">
@@ -28,13 +28,13 @@
           <div class="bg-purple-500 h-2 rounded-full" :style="{ width: reactProgress + '%' }"></div>
         </div>
         <button class="w-full bg-purple-600 text-white rounded-full py-2 hover:bg-purple-700 transition ease-in-out duration-300"
-          @click="startTest('Тест по React')">
-          Начать
+          @click="startTest('ReactJS бойынша тест')">
+          Бастау
         </button>
       </div>
     </div>
 
-    <!-- Nest JS Card -->
+    <!-- Nest JS карточкасы -->
     <div class="transform transition duration-500 hover:scale-105 w-72 border-2 border-purple-300 rounded-lg shadow-md overflow-hidden">
       <div class="p-5 text-center">
         <div class="mx-auto mb-4 rounded-full w-[200px] h-[200px] flex items-center justify-center bg-red-200 border-2 border-red-300">
@@ -45,8 +45,8 @@
           <div class="bg-purple-500 h-2 rounded-full" :style="{ width: nestProgress + '%' }"></div>
         </div>
         <button class="w-full bg-purple-600 text-white rounded-full py-2 hover:bg-purple-700 transition ease-in-out duration-300"
-          @click="startTest('Тест по Nest')">
-          Начать
+          @click="startTest('NestJS бойынша тест')">
+          Бастау
         </button>
       </div>
     </div>
