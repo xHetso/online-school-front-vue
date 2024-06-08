@@ -10,6 +10,7 @@
 		  <th scope="col" class="py-3 px-6">Сабақтың атауы</th>
 		  <th scope="col" class="py-3 px-6">Бейне URL</th>
 		  <th scope="col" class="py-3 px-6">Жаттығулар</th>
+		  <th scope="col" class="py-3 px-6">Теориялық ақпарат</th>
 		  <th scope="col" class="py-3 px-6">Автордың аты</th>
 		  <th scope="col" class="py-3 px-6">Әрекеттер</th>
 		</tr>
@@ -20,6 +21,7 @@
 			<td class="py-4 px-6">{{ lesson.title }}</td>
 			<td class="py-4 px-6">{{ lesson.videoUrl }}</td>
 			<td class="py-4 px-6">{{ lesson.exercises.join(', ') }}</td>
+			<td class="py-4 px-6">{{ lesson.description }}</td>
 			<td class="py-4 px-6">{{ lesson.authors[0].name }}</td>
 			<td class="py-4 px-6">
 			  <button @click="editLesson(lesson._id)" class="font-medium text-blue-600 hover:underline">

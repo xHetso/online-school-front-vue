@@ -13,15 +13,19 @@
         </video>
       </div>
       <div class="exercises mt-6">
-        <h4 class="text-lg font-semibold mb-2">Тапсырма:</h4>
+        <h4 class="text-xl font-semibold mb-2">Тапсырма:</h4>
         <ul v-if="currentLesson.exercises && currentLesson.exercises.length">
-          <li v-for="(exercise, index) in currentLesson.exercises" :key="index">
+          <li class="text-xl" v-for="(exercise, index) in currentLesson.exercises" :key="index">
             {{ exercise }}
           </li>
         </ul>
-        <div v-else>Тапсырма жоқ</div>
+        <div v-else class="text-xl">Тапсырма жоқ</div>
       </div>
     </div>
+    <div class="m-5 p-5 bg-gray-800 rounded-3xl">
+        <h1 class="text-2xl">Теориялық қосымша ақпарат:</h1>
+        <p class=" mt-5 text-xl" v-for="line in (currentLesson.description ? currentLesson.description.split('\\n') : [])" :key="line">{{ line }}</p>
+      </div>
     </template>
     <script setup>
     import { ref, onMounted } from 'vue';

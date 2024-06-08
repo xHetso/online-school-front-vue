@@ -37,6 +37,10 @@
         </div>
         <button @click.prevent="addExercise" class="mt-2 text-blue-500">Тапсырма қосу</button>
       </div>
+      <div>
+        <label for="description" class="block text-sm font-medium text-purple-700">Теориялық ақпарат:</label>
+        <input v-model="editableLesson.description" type="text" id="description" class="mt-1 block w-full rounded-md border-purple-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50">
+      </div>
       <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Өзгерістерді сақтау</button>
     </form>
   </div>
@@ -56,7 +60,8 @@
     videoUrl: '',
     intensives: [],
     authors: [],
-    exercises: []
+    exercises: [],
+    description: '',
   });
   
   const allIntensives = ref([]);
