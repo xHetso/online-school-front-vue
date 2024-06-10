@@ -7,11 +7,11 @@ import 'swiper/swiper-bundle.css';
 
 const authors = ref([]);
 const comments = ref([
-  { id: 1, name: "Анна", comment: "Үздік курстар, көп нәрсені үйрендім!", photo: "./../../src/assets/images/comment1.jpg" },
-  { id: 2, name: "Наташа", comment: "Рахмет, сіздің оқыту әдісіңіз ерекше.", photo: "./../../src/assets/images/comment2.jpg" },
-  { id: 3, name: "Елена", comment: "Бағдарламалауды бастағысы келетіндерге кеңес беремін.", photo: "./../../src/assets/images/comment3.jpg" },
-  { id: 4, name: "Мария", comment: "Тамаша оқытушылар және сапалы материалдар!", photo: "./../../src/assets/images/comment4.jpg" },
-  { id: 5, name: "Карина", comment: "Жаңа білімдер мен қызықты әдіс үшін алғыс айтамын!", photo: "./../../src/assets/images/comment5.jpg" }
+  { id: 1, name: "Айдана", comment: "Үздік курстар, көп нәрсені үйрендім!", photo: "./../../src/assets/images/comment1.jpg" },
+  { id: 2, name: "Карлығаш", comment: "Рахмет, сіздің оқыту әдісіңіз ерекше.", photo: "./../../src/assets/images/comment2.jpg" },
+  { id: 3, name: "Алия", comment: "Бағдарламалауды бастағысы келетіндерге кеңес беремін.", photo: "./../../src/assets/images/comment3.jpg" },
+  { id: 4, name: "Мадина", comment: "Тамаша оқытушылар және сапалы материалдар!", photo: "./../../src/assets/images/comment4.jpg" },
+  { id: 5, name: "Айгерім", comment: "Жаңа білімдер мен қызықты әдіс үшін алғыс айтамын!", photo: "./../../src/assets/images/comment5.jpg" }
 ]);
 const router = useRouter();
 
